@@ -3,7 +3,7 @@
 ## 安装
   
 ```bash
-pnpm add @2116709082q/pi -g
+pnpm add @tickh/pi -g
 ```
 
 ## 优先度

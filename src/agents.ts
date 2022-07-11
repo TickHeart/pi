@@ -1,53 +1,41 @@
-const pnpm = {
-  add: 'pnpm add {0}',
-  addf: 'pnpm add -prefer-offline {0}',
-  pre: 'pnpm remove {0}',
-  preg: 'pnpm remove -g {0}',
-  pu: 'pnpm up',
-  pi: 'pnpm i',
-  pif: 'pnpm i --frozen-lockfile',
-  pr: 'pnpm run {0}',
-  pt: 'pnpm test',
-  ptu: 'pnpm test --update-snapshot',
-  init: 'pnpm init',
-  pc: 'pnpm create',
+enum Tools {
+  Pnpm = 'pnpm',
+  Yarn = 'yarn',
+  Npm = 'npm',
 }
 
-const yarn = {
-  add: 'yarn add {0}',
-  addf: 'yarn add {0}',
-  pre: 'yarn remove {0}',
-  preg: 'yarn remove -g {0}',
-  pu: 'yarn up',
-  pi: 'yarn i',
-  pif: 'yarn install --frozen-lockfile',
-  pr: 'yarn run {0}',
-  pt: 'yarn test',
-  ptu: 'yarn test --update-snapshot',
-  init: 'yarn init -y',
-  pc: 'yarn create',
+const options = {
+  pi: ['pnpm install', 'yarn', 'npm install'],
+  pif: ['pnpm install {p}', 'yarn {p}', 'npm install'].map(i =>
+    i.replace(/\{p\}/, '--frozen-lockfile'),
+  ),
+  add: ['pnpm add {0}', 'yarn add {0}', 'npm install {0}'],
+  addf: ['pnpm add {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
+    i.replace(/\{p\}/, '--frozen-lockfile'),
+  ),
+  pu: ['pnpm update', 'yarn update', 'npm update'],
+  init: ['pnpm init', 'yarn init -y', 'npm init -y'],
+  pr: ['pnpm run {0}', 'yarn run {0}', 'npm run {0}'],
+  pre: ['pnpm remove {0}', 'yarn remove {0}', 'npm remove {0}'],
+  pc: ['pnpm create {0}', 'yarn create {0}', 'npm create {0}'],
 }
 
-const npm = {
-  add: 'npm install {0}',
-  addf: 'npm install {0}',
-  pre: 'npm remove {0}',
-  preg: 'npm remove -g {0}',
-  pu: 'npm update',
-  pi: 'npm i',
-  pif: 'npm ci',
-  pr: 'npm run {0}',
-  pt: 'npm run  test',
-  ptu: 'npm run test --update-snapshot',
-  init: 'npm init -y',
-  pc: 'npm create',
+type ValueType = Record<keyof typeof options, string>
+
+const getValueByIndex = (index: number): ValueType => {
+  const values = Object.entries(options)
+  const result: any = {}
+  values.forEach(([key, values]) => {
+    result[key] = values[index]
+  })
+  return result
 }
 
 export const AGENTS = {
-  pnpm,
-  yarn,
-  npm,
-}
+  pnpm: getValueByIndex(0),
+  yarn: getValueByIndex(1),
+  npm: getValueByIndex(2),
+} as Record<Tools, ValueType>
 
 export const CMDS = Object.keys(AGENTS)
 export type AGENTS_KEYS = keyof typeof AGENTS
