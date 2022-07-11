@@ -3,7 +3,7 @@
 ## 安装
   
 ```bash
-pnpm add @2116709082q/qi
+pnpm add @2116709082q/qi -g
 ```
 
 ## 使用
