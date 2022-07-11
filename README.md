@@ -36,12 +36,6 @@ add
 # npm i
 ```
 
-```bash
-add
-# pnpm add
-# yarn add
-# npm i
-```
 
 ```bash
 addf
