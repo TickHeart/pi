@@ -11,7 +11,7 @@ const options = {
   ),
   add: ['pnpm add {0}', 'yarn add {0}', 'npm install {0}'],
   addf: ['pnpm add {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
-    i.replace(/\{p\}/, '--frozen-lockfile'),
+    i.replace(/\{p\}/, '--prefer-offline'),
   ),
   pu: ['pnpm update', 'yarn update', 'npm update'],
   init: ['pnpm init', 'yarn init -y', 'npm init -y'],
