@@ -1,7 +1,8 @@
 {
-  "name": "pi",
+  "name": "@2116709082q/pi",
   "type": "module",
-  "version": "0.0.0",
+  "private": false,
+  "version": "0.0.14",
   "packageManager": "pnpm@7.1.2",
   "description": "",
   "author": "TickHeart",
@@ -35,8 +36,16 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "bin"
   ],
+  "bin": {
+    "wpi": "./bin/pi.mjs",
+    "wpif": "./bin/pif.mjs",
+    "wadd": "./bin/add.mjs",
+    "waddf": "./bin/addf.mjs",
+    "wpr": "./bin/pr.mjs"
+  },
   "scripts": {
     "stub": "unbuild --stub",
     "build": "unbuild",
@@ -75,5 +84,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.11"
   }
 }
