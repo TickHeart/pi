@@ -9,6 +9,8 @@ const pnpm = {
   pr: 'pnpm run {0}',
   pt: 'pnpm test',
   ptu: 'pnpm test --update-snapshot',
+  init: 'pnpm init',
+  pc: 'pnpm create',
 }
 
 const yarn = {
@@ -22,6 +24,8 @@ const yarn = {
   pr: 'yarn run {0}',
   pt: 'yarn test',
   ptu: 'yarn test --update-snapshot',
+  init: 'yarn init -y',
+  pc: 'yarn create',
 }
 
 const npm = {
@@ -35,6 +39,8 @@ const npm = {
   pr: 'npm run {0}',
   pt: 'npm run  test',
   ptu: 'npm run test --update-snapshot',
+  init: 'npm init -y',
+  pc: 'npm create',
 }
 
 export const AGENTS = {
