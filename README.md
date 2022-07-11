@@ -3,8 +3,11 @@
 ## 安装
   
 ```bash
-pnpm add @2116709082q/qi -g
+pnpm add @2116709082q/pi -g
 ```
+
+## 优先度
+`pnpm > yarn > npm`
 
 ## 使用
 
