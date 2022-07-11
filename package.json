@@ -2,7 +2,7 @@
   "name": "@2116709082q/pi",
   "type": "module",
   "private": false,
-  "version": "0.0.14",
+  "version": "0.0.16",
   "packageManager": "pnpm@7.1.2",
   "description": "",
   "author": "TickHeart",
@@ -86,6 +86,7 @@
     ]
   },
   "dependencies": {
+    "chalk": "^5.0.1",
     "fast-glob": "^3.2.11"
   }
 }
