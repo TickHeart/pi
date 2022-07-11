@@ -6,6 +6,9 @@
 pnpm add @2116709082q/qi -g
 ```
 
+## 优先度
+`pnpm > yarn > npm`
+
 ## 使用
 
 ```bash
