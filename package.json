@@ -1,7 +1,7 @@
 {
   "name": "@2116709082q/pi",
   "type": "module",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "private": false,
   "packageManager": "pnpm@7.1.2",
   "description": "",
