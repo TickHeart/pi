@@ -25,18 +25,24 @@ export async function run(parser: Parser) {
     index = 0
   }
   catch {
-    if (index === CMDS.length)
-      return log(chalk.red('请检查是否拥有pnpm、yarn、npm环境'))
+    if (index === CMDS.length) {
+      log(chalk.red('请检查是否拥有pnpm、yarn、npm环境'))
+      index = 0
+    }
     const prompt = [
       {
-        type: 'input',
+        type: 'confirm',
+        message: `${CMDS[index - 1]}执行失败是否尝试使用${CMDS[index]}执行命令?`,
         name: 'isOk',
-        message: `${CMDS[index - 1]}执行失败是否尝试使用${CMDS[index]}执行命令?（Y/N）`,
-        default: 'N',
+        prefix: '⚠️',
+        default: false,
+        filter(val: any) {
+          return val.toLowerCase()
+        },
       },
     ]
     const { isOk } = await inquirer.prompt(prompt)
-    if (isOk === 'Y')
+    if (isOk)
       run(parser)
   }
 }
