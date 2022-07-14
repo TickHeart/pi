@@ -46,7 +46,7 @@ const getValueByIndex = (index: number): ValueType => {
   const values = Object.entries(options)
   const result: any = {}
   values.forEach(([key, values]) => {
-    result[key] = values[index]
+    result[key] = values[0][index]
   })
   return result
 }
