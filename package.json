@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "private": false,
   "packageManager": "pnpm@7.1.2",
   "description": "",
@@ -68,7 +68,7 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "husky install",
-    "autoBuild": "esno scripts/build.ts && pnpm run lint:fix && pnpm run release && lg"
+    "autoBuild": "esno scripts/build.ts && pnpm run lint:fix && pnpm run release"
   },
   "dependencies": {
     "chalk": "^5.0.1",
