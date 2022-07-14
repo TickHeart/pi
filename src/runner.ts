@@ -9,6 +9,7 @@ import dayjs from 'dayjs'
 import type { AGENTS_KEYS } from './agents'
 import { CMDS } from './agents'
 import { inspectVersion } from './utils/version'
+import { list } from './utils/list'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -88,3 +89,9 @@ async function logUSerVersion() {
     return
   log(chalk.bgRed(`更新啦更新啦，请升级pi至${lastVersion}`))
 }
+
+// parse list command
+const args = process.argv.slice(2)
+if (args[0] === 'list')
+  list()
+
