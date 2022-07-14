@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.0.42",
+  "version": "0.0.43",
   "private": false,
   "packageManager": "pnpm@7.1.2",
   "description": "",
@@ -73,7 +73,8 @@
   "dependencies": {
     "chalk": "^5.0.1",
     "fast-glob": "^3.2.11",
-    "inquirer": "^9.0.0"
+    "inquirer": "^9.0.0",
+    "latest-version": "^7.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",
