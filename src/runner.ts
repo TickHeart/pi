@@ -17,10 +17,23 @@ let index = 0
 
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
+// parse list command
+const parseLineFlag = () => {
+  const args = process.argv.slice(2)
+  if (args[0] === 'list') {
+    list()
+    return true
+  }
+  return false
+}
+
 export async function run(parser: Parser) {
   const res = await inspectionTime()
   if (res)
     await logUSerVersion()
+  const justLog = parseLineFlag()
+  if (justLog)
+    return
   try {
     const cmd = CMDS[index++] as AGENTS_KEYS
     const args = process.argv.slice(2)
@@ -89,9 +102,3 @@ async function logUSerVersion() {
     return
   log(chalk.bgRed(`更新啦更新啦，请升级pi至${lastVersion}`))
 }
-
-// parse list command
-const args = process.argv.slice(2)
-if (args[0] === 'list')
-  list()
-
