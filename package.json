@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "private": false,
   "packageManager": "pnpm@7.1.2",
   "description": "",
@@ -45,7 +45,13 @@
     "init": "./bin/init.mjs",
     "pr": "./bin/pr.mjs",
     "pre": "./bin/pre.mjs",
-    "pc": "./bin/pc.mjs"
+    "pc": "./bin/pc.mjs",
+    "dd": "./bin/dd.mjs",
+    "pt": "./bin/pt.mjs",
+    "ptu": "./bin/ptu.mjs",
+    "ec": "./bin/ec.mjs",
+    "pvite": "./bin/pvite.mjs",
+    "bb": "./bin/bb.mjs"
   },
   "files": [
     "dist",
