@@ -12,7 +12,7 @@ let index = 0
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
 export async function run(parser: Parser) {
-  await logUSerVersion()
+  // await logUSerVersion()
   try {
     const cmd = CMDS[index++] as AGENTS_KEYS
     const args = process.argv.slice(2)
@@ -53,6 +53,7 @@ export async function run(parser: Parser) {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function logUSerVersion() {
   if (index !== 0)
     return
