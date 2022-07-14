@@ -1,11 +1,11 @@
-import { execaCommandSync } from 'execa'
+import latestVersion from 'latest-version'
 import pkg from '../../package.json'
-export function getLastVersion(): string {
-  return execaCommandSync('npm view @tickh/pi version').stdout.replace(/'/g, '') as string
+export async function getLastVersion() {
+  return await latestVersion(pkg.name)
 }
 
-export function inspectVersion() {
-  const lastVersion = getLastVersion()
+export async function inspectVersion() {
+  const lastVersion = await getLastVersion()
   const userVersion = pkg.version
   return [lastVersion === userVersion, userVersion, lastVersion]
 }

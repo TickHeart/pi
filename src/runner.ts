@@ -12,7 +12,7 @@ let index = 0
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
 export async function run(parser: Parser) {
-  logUSerVersion()
+  await logUSerVersion()
   try {
     const cmd = CMDS[index++] as AGENTS_KEYS
     const args = process.argv.slice(2)
@@ -53,10 +53,10 @@ export async function run(parser: Parser) {
   }
 }
 
-function logUSerVersion() {
+async function logUSerVersion() {
   if (index !== 0)
     return
-  const [isNew, userVersion, lastVersion] = inspectVersion()
+  const [isNew, userVersion, lastVersion] = await inspectVersion()
   log(chalk.bgGreen(`您的pi版本是${userVersion}`))
   if (isNew)
     return
