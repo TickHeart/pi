@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "packageManager": "pnpm@7.1.2",
   "description": "",
@@ -74,7 +74,7 @@
     "chalk": "^5.0.1",
     "fast-glob": "^3.2.11",
     "inquirer": "^9.0.0",
-    "latest-version": "^7.0.0"
+    "pacote": "^13.6.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",
@@ -82,6 +82,7 @@
     "@commitlint/config-conventional": "^17.0.3",
     "@types/inquirer": "^8.2.1",
     "@types/node": "^17.0.45",
+    "@types/pacote": "^11.1.5",
     "bumpp": "^7.2.0",
     "eslint": "^8.19.0",
     "esno": "^0.16.3",
