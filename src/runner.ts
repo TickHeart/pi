@@ -3,6 +3,7 @@ import chalk from 'chalk'
 import inquirer from 'inquirer'
 import type { AGENTS_KEYS } from './agents'
 import { CMDS } from './agents'
+import { inspectVersion } from './utils/version'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -11,6 +12,7 @@ let index = 0
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
 export async function run(parser: Parser) {
+  logUSerVersion()
   try {
     const cmd = CMDS[index++] as AGENTS_KEYS
     const args = process.argv.slice(2)
@@ -49,4 +51,14 @@ export async function run(parser: Parser) {
     if (isOk)
       run(parser)
   }
+}
+
+function logUSerVersion() {
+  if (index !== 0)
+    return
+  const [isNew, userVersion, lastVersion] = inspectVersion()
+  log(chalk.bgGreen(`您的pi版本是${userVersion}`))
+  if (isNew)
+    return
+  log(chalk.bgRed(`更新啦更新啦，请升级pi至${lastVersion}`))
 }
