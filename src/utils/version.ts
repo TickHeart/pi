@@ -1,7 +1,7 @@
-import latestVersion from 'latest-version'
+import pacote from 'pacote'
 import pkg from '../../package.json'
 export async function getLastVersion() {
-  return await latestVersion(pkg.name)
+  return (await pacote.manifest(pkg.name)).version
 }
 
 export async function inspectVersion() {
