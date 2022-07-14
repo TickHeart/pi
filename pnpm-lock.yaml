@@ -9,6 +9,7 @@ specifiers:
   '@types/pacote': ^11.1.5
   bumpp: ^7.2.0
   chalk: ^5.0.1
+  dayjs: ^1.11.3
   eslint: ^8.19.0
   esno: ^0.16.3
   execa: ^6.1.0
@@ -25,6 +26,7 @@ specifiers:
 
 dependencies:
   chalk: 5.0.1
+  dayjs: 1.11.3
   fast-glob: 3.2.11
   inquirer: 9.0.0
   pacote: 13.6.1
@@ -1714,6 +1716,10 @@ packages:
     resolution: {integrity: sha512-2iy1EkLdlBzQGvbweYRFxmFath8+K7+AKB0TlhHWkNuH+TmovaMH/Wp7V7R4u7f4SnX3OgLsU9t1NI9ioDnUpg==}
     engines: {node: '>=8'}
     dev: true
+
+  /dayjs/1.11.3:
+    resolution: {integrity: sha512-xxwlswWOlGhzgQ4TKzASQkUhqERI3egRNqgV4ScR8wlANA/A9tZ7miXa44vTTKEq5l7vWoL5G57bG3zA+Kow0A==}
+    dev: false
 
   /debug/2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}

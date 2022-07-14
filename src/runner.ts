@@ -1,6 +1,11 @@
+#!/usr/bin/env node
+import { fileURLToPath } from 'url'
+import { resolve } from 'path'
+import { readFile, writeFile } from 'fs/promises'
 import { execaCommand } from 'execa'
 import chalk from 'chalk'
 import inquirer from 'inquirer'
+import dayjs from 'dayjs'
 import type { AGENTS_KEYS } from './agents'
 import { CMDS } from './agents'
 import { inspectVersion } from './utils/version'
@@ -12,7 +17,9 @@ let index = 0
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
 export async function run(parser: Parser) {
-  // await logUSerVersion()
+  const res = await inspectionTime()
+  if (res)
+    await logUSerVersion()
   try {
     const cmd = CMDS[index++] as AGENTS_KEYS
     const args = process.argv.slice(2)
@@ -53,7 +60,25 @@ export async function run(parser: Parser) {
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const t = fileURLToPath(import.meta.url)
+const root = resolve(t, '..', '..', '..')
+const cacheDir = resolve(root, 'cache')
+const timeFilePath = resolve(cacheDir, 'time.txt')
+
+export async function inspectionTime() {
+  const time = await readFile(timeFilePath, { encoding: 'utf-8' })
+  const aftunix = dayjs(time).add(5 * 60, 'seconds').unix()
+  const now = dayjs().format()
+  const nowunix = dayjs(now).unix()
+  if (nowunix > aftunix) {
+    await writeFile(timeFilePath, now.toString(), { encoding: 'utf-8' })
+    return true
+  }
+  else {
+    return false
+  }
+}
+
 async function logUSerVersion() {
   if (index !== 0)
     return
