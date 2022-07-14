@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "private": false,
   "packageManager": "pnpm@7.1.2",
   "description": "",
@@ -41,6 +41,7 @@
     "add": "./bin/add.mjs",
     "addf": "./bin/addf.mjs",
     "pio": "./bin/pio.mjs",
+    "pis": "./bin/pis.mjs",
     "pios": "./bin/pios.mjs",
     "addw": "./bin/addw.mjs",
     "pu": "./bin/pu.mjs",
