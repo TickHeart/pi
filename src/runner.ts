@@ -9,6 +9,7 @@ import dayjs from 'dayjs'
 import type { AGENTS_KEYS } from './agents'
 import { CMDS } from './agents'
 import { inspectVersion } from './utils/version'
+import { list } from './utils/list'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -16,10 +17,23 @@ let index = 0
 
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
+// parse list command
+const parseLineFlag = () => {
+  const args = process.argv.slice(2)
+  if (args[0] === 'list') {
+    list()
+    return true
+  }
+  return false
+}
+
 export async function run(parser: Parser) {
   const res = await inspectionTime()
   if (res)
     await logUSerVersion()
+  const justLog = parseLineFlag()
+  if (justLog)
+    return
   try {
     const cmd = CMDS[index++] as AGENTS_KEYS
     const args = process.argv.slice(2)
