@@ -72,7 +72,8 @@
     "test": "vitest",
     "typecheck": "tsc --noEmit",
     "prepare": "husky install",
-    "autoBuild": "esno scripts/build.ts && pnpm run lint:fix && pnpm run release"
+    "auto": "esno scripts/build.ts",
+    "autoBuild": "pnpm run auto && pnpm run lint:fix && pnpm run release"
   },
   "dependencies": {
     "chalk": "^5.0.1",
