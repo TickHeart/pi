@@ -45,4 +45,6 @@ export async function run(parser: Parser) {
     if (isOk)
       run(parser)
   }
+  const color = chalk.rgb(238, 63, 77)
+  log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
 }

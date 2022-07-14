@@ -19,6 +19,12 @@ export const options = {
   pr: ['pnpm run {0}', 'yarn run {0}', 'npm run {0}'],
   pre: ['pnpm remove {0}', 'yarn remove {0}', 'npm remove {0}'],
   pc: ['pnpm create {0}', 'yarn create {0}', 'npm create {0}'],
+  dd: ['pnpm run dev {0}', 'yarn run dev {0}', 'npm run dev {0}'],
+  pt: ['pnpm run text {0}', 'yarn run text {0}', 'npm run text {0}'],
+  ptu: ['pnpm run test --update', 'yarn run test --update', 'npm run test --update'],
+  ec: ['pnpm create @tickh/ec', 'yarn create @tickh/ec', 'npm create @tickh/ec'],
+  pvite: ['pnpm create vite {0}', 'yarn create vite {0}', 'npm create vite {0}'],
+  bb: ['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'],
 }
 
 type ValueType = Record<keyof typeof options, string>
