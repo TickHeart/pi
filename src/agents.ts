@@ -4,7 +4,7 @@ enum Tools {
   Npm = 'npm',
 }
 
-const options = {
+export const options = {
   pi: ['pnpm install', 'yarn', 'npm install'],
   pif: ['pnpm install {p}', 'yarn {p}', 'npm install'].map(i =>
     i.replace(/\{p\}/, '--frozen-lockfile'),
