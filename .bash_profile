@@ -1,0 +1,1 @@
+alias noo="node -v"

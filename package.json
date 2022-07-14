@@ -40,6 +40,7 @@
     "pif": "./bin/pif.mjs",
     "add": "./bin/add.mjs",
     "addf": "./bin/addf.mjs",
+    "addw": "./bin/addw.mjs",
     "init": "./bin/init.mjs",
     "pre": "./bin/pre.mjs",
     "pu": "./bin/pu.mjs",

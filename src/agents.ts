@@ -13,6 +13,7 @@ const options = {
   addf: ['pnpm add {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
     i.replace(/\{p\}/, '--prefer-offline'),
   ),
+  addw: ['pnpm add {p} {0}', 'yarn add {0}', 'npm install {0}'].map(i => i.replace('{p}', '--workspace')),
   pu: ['pnpm update', 'yarn update', 'npm update'],
   init: ['pnpm init', 'yarn init -y', 'npm init -y'],
   pr: ['pnpm run {0}', 'yarn run {0}', 'npm run {0}'],
