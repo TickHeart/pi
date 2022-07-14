@@ -23,11 +23,15 @@ export async function run(parser: Parser) {
       encoding: 'utf-8',
     })
     index = 0
+
+    const color = chalk.rgb(238, 63, 77)
+    log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
   }
   catch {
     if (index === CMDS.length) {
       log(chalk.red('请检查是否拥有pnpm、yarn、npm环境'))
       index = 0
+      return
     }
     const prompt = [
       {
@@ -45,6 +49,4 @@ export async function run(parser: Parser) {
     if (isOk)
       run(parser)
   }
-  const color = chalk.rgb(238, 63, 77)
-  log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
 }
