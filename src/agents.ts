@@ -17,6 +17,12 @@ export const options = {
   addf: [['pnpm add {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
     i.replace(/\{p\}/, '--prefer-offline'),
   ), '安装一个依赖携带 `prefer-offline` flag'],
+  pio: [['pnpm i {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
+    i.replace(/\{p\}/, '--prefer-offline'),
+  ), '安装一个依赖携带 `prefer-offline` flag'],
+  pios: [['pnpm i {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
+    i.replace(/\{p\}/, '--prefer-offline --shamefully-hoist'),
+  ), '安装一个依赖携带 `prefer-offline` 和 `shamefully-hoist` flag'],
   addw: [['pnpm add {p} {0}', 'yarn add {0}', 'npm install {0}'].map(i => i.replace('{p}', '--workspace')), '安装一个依赖携带 `workspace` flag'],
   pu: [['pnpm update', 'yarn update', 'npm update'], '升级依赖'],
   init: [['pnpm init', 'yarn init -y', 'npm init -y'], '初始化项目'],
