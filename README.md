@@ -1,5 +1,9 @@
 # pi
 
+no more care about what package manager is this repo use;
+
+one line, try all.
+
 ## 安装
   
 ```bash
@@ -7,32 +11,37 @@ pnpm add @tickh/pi -g
 ```
 
 ## 优先度
+
 `pnpm > yarn > npm`
 
-## 使用
+## alias
 
-```ts
-export const options = {
-  pi: ['pnpm install', 'yarn', 'npm install'],
-  pif: ['pnpm install {p}', 'yarn {p}', 'npm install'].map(i =>
-    i.replace(/\{p\}/, '--frozen-lockfile'),
-  ),
-  add: ['pnpm add {0}', 'yarn add {0}', 'npm install {0}'],
-  addf: ['pnpm add {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
-    i.replace(/\{p\}/, '--prefer-offline'),
-  ),
-  addw: ['pnpm add {p} {0}', 'yarn add {0}', 'npm install {0}'].map(i => i.replace('{p}', '--workspace')),
-  pu: ['pnpm update', 'yarn update', 'npm update'],
-  init: ['pnpm init', 'yarn init -y', 'npm init -y'],
-  pr: ['pnpm run {0}', 'yarn run {0}', 'npm run {0}'],
-  pre: ['pnpm remove {0}', 'yarn remove {0}', 'npm remove {0}'],
-  pc: ['pnpm create {0}', 'yarn create {0}', 'npm create {0}'],
-  dd: ['pnpm run dev {0}', 'yarn run dev {0}', 'npm run dev {0}'],
-  pt: ['pnpm run test {0}', 'yarn run test {0}', 'npm run text {0}'],
-  ptu: ['pnpm run test --update', 'yarn run test --update', 'npm run test --update'],
-  ec: ['pnpm create @tickh/ec', 'yarn create @tickh/ec', 'npm create @tickh/ec'],
-  pvite: ['pnpm create vite {0}', 'yarn create vite {0}', 'npm create vite {0}'],
-  bb: ['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'],
-}
+```bash
+# try pi/add ... with `list` flag
+pi list
 ```
+
+## pr
+
+如果你想要在 pi 中加上自己喜欢的命令，那么你可以提pr，pi的 pr 非常简单
+
+你只需要找到 `agents.ts` 文件中的 `options` 对象按照以上的格式添加即可。
+添加完成后只需运行 `pnpm run auto`他会生成配置所需的后续文件，生成完毕后你就可以提pr了。就是如此简单。
+
+一句话来说就是，你只管配置，代码自动生成。
+
+## 运行时指定包管理器
+
+当你照常去运行指令时，当一个包管理器出错我们会询问您是否使用下一个包管理器。 默认的顺序是 `pnpm > yarn > npm`。
+
+但是如果遇到了我就想用 `npm` 时，这个流程就会变得非常无聊且烦躁。
+
+举个例子：
+
+如果你想运行 `npm` , 你只需要在你命令中加入 `-N` 或者 `--npm` 参数即可。
+<br />
+如果你想运行 `yarn` , 你只需要在你命令中加入 `-Y` 或者 `--yarn` 参数即可。
+<br />
+如果你想运行 `pnpm` , 你只需要在你命令中加入 `-P` 或者 `--pnpm` 参数即可。
+
 

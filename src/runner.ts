@@ -9,6 +9,8 @@ import dayjs from 'dayjs'
 import type { AGENTS_KEYS } from './agents'
 import { CMDS } from './agents'
 import { inspectVersion } from './utils/version'
+import { list } from './utils/list'
+import { selectorPackage } from './argv'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -16,14 +18,27 @@ let index = 0
 
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
+// parse list command
+const parseLineFlag = () => {
+  const args = process.argv.slice(2)
+  if (args[0] === 'list') {
+    list()
+    return true
+  }
+  return false
+}
+
 export async function run(parser: Parser) {
-  const res = await inspectionTime()
-  if (res)
-    await logUSerVersion()
+  await localDetection()
+
+  if (parseLineFlag())
+    return
+
+  const [_cmd, args] = selectorPackage(process.argv.slice(2))
+
   try {
-    const cmd = CMDS[index++] as AGENTS_KEYS
-    const args = process.argv.slice(2)
-    const cmdStr = parser(cmd, args)
+    const cmd = _cmd || CMDS[index++] as AGENTS_KEYS
+    const cmdStr = parser(cmd as any, args as string[])
 
     log(chalk.yellow(`执行 ${cmdStr}`))
 
@@ -33,7 +48,7 @@ export async function run(parser: Parser) {
     })
     index = 0
 
-    const color = chalk.rgb(238, 63, 77)
+    const color = chalk.rgb(138, 255, 128)
     log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
   }
   catch {
@@ -42,21 +57,9 @@ export async function run(parser: Parser) {
       index = 0
       return
     }
-    const prompt = [
-      {
-        type: 'confirm',
-        message: `${CMDS[index - 1]}执行失败是否尝试使用${CMDS[index]}执行命令?`,
-        name: 'isOk',
-        prefix: '⚠️',
-        default: false,
-        filter(val: any) {
-          return val.toLowerCase()
-        },
-      },
-    ]
-    const { isOk } = await inquirer.prompt(prompt)
-    if (isOk)
-      run(parser)
+    if (_cmd)
+      return
+    await askForRestart(parser)
   }
 }
 
@@ -80,11 +83,36 @@ export async function inspectionTime() {
 }
 
 async function logUSerVersion() {
+  const color = chalk.rgb(125, 255, 234)
   if (index !== 0)
     return
   const [isNew, userVersion, lastVersion] = await inspectVersion()
-  log(chalk.bgGreen(`您的pi版本是${userVersion}`))
+  log(color(`您的pi版本是${userVersion}`))
   if (isNew)
     return
-  log(chalk.bgRed(`更新啦更新啦，请升级pi至${lastVersion}`))
+  log(color(`更新啦更新啦，请升级pi至${lastVersion}`))
+}
+
+async function localDetection() {
+  const res = await inspectionTime()
+  if (res)
+    await logUSerVersion()
+}
+
+async function askForRestart(parser: Parser) {
+  const prompt = [
+    {
+      type: 'confirm',
+      message: `${CMDS[index - 1]}执行失败是否尝试使用${CMDS[index]}执行命令?`,
+      name: 'isOk',
+      prefix: '⚠️',
+      default: false,
+      filter(val: any) {
+        return val.toLowerCase()
+      },
+    },
+  ]
+  const { isOk } = await inquirer.prompt(prompt)
+  if (isOk)
+    await run(parser)
 }
