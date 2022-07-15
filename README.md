@@ -45,3 +45,11 @@ pi list
 如果你想运行 `pnpm` , 你只需要在你命令中加入 `-P` 或者 `--pnpm` 参数即可。
 
 
+## 配置
+  
+```bash
+# .pirc
+
+# default: false
+skipVersionTesting=true // 这会跳过工具内置的版本检测
+```

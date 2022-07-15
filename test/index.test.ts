@@ -1,4 +1,5 @@
 import pkg from '../package.json'
+import { resolveConfig } from '../src/config'
 import { list } from '../src/utils/list'
 import { getLastVersion, inspectVersion } from '../src/utils/version'
 
@@ -16,8 +17,17 @@ describe('developer-plus', () => {
       ]
     `)
   })
-  it('pi list', () => {
+  it.skip('pi list', () => {
     list()
+  })
+
+  it('config', async () => {
+    const config = await resolveConfig()
+    expect(config).toMatchInlineSnapshot(`
+      {
+        "skipVersionTesting": false,
+      }
+    `)
   })
 })
 

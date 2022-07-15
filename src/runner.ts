@@ -11,6 +11,7 @@ import { CMDS } from './agents'
 import { inspectVersion } from './utils/version'
 import { list } from './utils/list'
 import { selectorPackage } from './argv'
+import { resolveConfig } from './config'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -29,7 +30,8 @@ const parseLineFlag = () => {
 }
 
 export async function run(parser: Parser) {
-  await localDetection()
+  const config = await resolveConfig()
+  await localDetection(config)
 
   if (parseLineFlag())
     return
@@ -93,7 +95,11 @@ async function logUSerVersion() {
   log(color(`更新啦更新啦，请升级pi至${lastVersion}`))
 }
 
-async function localDetection() {
+async function localDetection(config: {
+  skipVersionTesting: any
+}) {
+  if (config.skipVersionTesting)
+    return
   const res = await inspectionTime()
   if (res)
     await logUSerVersion()
