@@ -1,8 +1,9 @@
 import pkg from '../package.json'
+import { list } from '../src/utils/list'
 import { getLastVersion, inspectVersion } from '../src/utils/version'
 
 describe('developer-plus', () => {
-  it('Version', async () => {
+  it.skip('Version', async () => {
     const lastVersion = await getLastVersion()
 
     expect(lastVersion).toMatchInlineSnapshot('"0.3.2"')
@@ -14,6 +15,9 @@ describe('developer-plus', () => {
         "0.3.2",
       ]
     `)
+  })
+  it('pi list', () => {
+    list()
   })
 })
 

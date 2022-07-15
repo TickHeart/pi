@@ -1,6 +1,10 @@
 import chalk from 'chalk'
-import columnify from 'columnify'
+import Table from 'cli-table3'
 import { options } from '../agents'
+
+const table = new Table({
+  head: ['alias', 'description', 'example'],
+})
 
 interface ListEach {
   alias: string
@@ -23,8 +27,12 @@ function parseToData(opts: typeof options) {
 
 export function list() {
   const data: ListEach[] = parseToData(options)
-  const columns = columnify(data)
+  // const columns = columnify(data)
   const color = chalk.rgb(168, 69, 107)
+  data.forEach((item) => {
+    table.push([color(item.alias), item.description, item.example])
+  })
+
   // eslint-disable-next-line no-console
-  console.log(color(columns))
+  console.log(table.toString())
 }
