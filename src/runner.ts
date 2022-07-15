@@ -47,7 +47,7 @@ export async function run(parser: Parser) {
     })
     index = 0
 
-    const color = chalk.rgb(238, 63, 77)
+    const color = chalk.rgb(138, 255, 128)
     log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
   }
   catch {
@@ -94,11 +94,12 @@ export async function inspectionTime() {
 }
 
 async function logUSerVersion() {
+  const color = chalk.rgb(125, 255, 234)
   if (index !== 0)
     return
   const [isNew, userVersion, lastVersion] = await inspectVersion()
-  log(chalk.bgGreen(`您的pi版本是${userVersion}`))
+  log(color(`您的pi版本是${userVersion}`))
   if (isNew)
     return
-  log(chalk.bgRed(`更新啦更新啦，请升级pi至${lastVersion}`))
+  log(color(`更新啦更新啦，请升级pi至${lastVersion}`))
 }
