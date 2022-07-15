@@ -1,5 +1,4 @@
 import pkg from '../package.json'
-import { inspectionTime } from '../src/runner'
 import { getLastVersion, inspectVersion } from '../src/utils/version'
 
 describe('developer-plus', () => {
