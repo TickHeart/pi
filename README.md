@@ -52,4 +52,7 @@ pi list
 
 # default: false
 skipVersionTesting=true // 这会跳过工具内置的版本检测
+
+# default：pnpm|yarn|npm
+schedulingSequence="pnpm|npm|yarn" 切换默认的调度顺序
 ```

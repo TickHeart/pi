@@ -8,10 +8,10 @@ export async function resolveConfig() {
   const pircPath = resolve(cwd, '.pirc')
   try {
     await access(pircPath, fs.constants.F_OK)
-    const { skipVersionTesting = false } = ini.parse(await readFile(pircPath, { encoding: 'utf-8' }))
-    return { skipVersionTesting }
+    const { skipVersionTesting = false, schedulingSequence = 'pnpm|yarn|npm' } = ini.parse(await readFile(pircPath, { encoding: 'utf-8' }))
+    return { skipVersionTesting, schedulingSequence }
   }
   catch {
-    return { skipVersionTesting: false }
+    return { skipVersionTesting: false, schedulingSequence: 'pnpm|yarn|npm' }
   }
 }

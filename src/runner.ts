@@ -7,7 +7,7 @@ import chalk from 'chalk'
 import inquirer from 'inquirer'
 import dayjs from 'dayjs'
 import type { AGENTS_KEYS } from './agents'
-import { CMDS } from './agents'
+import { CMDS, setCMDS } from './agents'
 import { inspectVersion } from './utils/version'
 import { list } from './utils/list'
 import { selectorPackage } from './argv'
@@ -32,7 +32,7 @@ const parseLineFlag = () => {
 export async function run(parser: Parser) {
   const config = await resolveConfig()
   await localDetection(config)
-
+  setCMDS(config.schedulingSequence.split('|'))
   if (parseLineFlag())
     return
 

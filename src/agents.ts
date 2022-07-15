@@ -57,5 +57,10 @@ export const AGENTS = {
   npm: getValueByIndex(2),
 } as Record<Tools, ValueType>
 
-export const CMDS = Object.keys(AGENTS)
+// eslint-disable-next-line import/no-mutable-exports
+export let CMDS = Object.keys(AGENTS)
+
+export function setCMDS(cmds: string[]) {
+  CMDS = cmds
+}
 export type AGENTS_KEYS = keyof typeof AGENTS
