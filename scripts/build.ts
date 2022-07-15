@@ -31,7 +31,9 @@ async function writeCommands(optionKeys: string[]) {
   optionKeys.forEach(async (key) => {
     const fileName = `${key}.ts`
     const filePath = resolve(commands, fileName)
-    const content = await (await readFile(templateCommands, { encoding: 'utf-8' })).replaceAll('{mode}', key)
+    const content = await (
+      await readFile(templateCommands, { encoding: 'utf-8' })
+    ).replaceAll('{mode}', key)
     await writeFile(filePath, content, { encoding: 'utf-8' })
   })
 }
@@ -40,7 +42,9 @@ async function writeBin(optionKeys: string[]) {
   optionKeys.forEach(async (key) => {
     const fileName = `${key}.mjs`
     const filePath = resolve(bin, fileName)
-    const content = await (await readFile(templateBin, { encoding: 'utf-8' })).replaceAll('{mode}', key)
+    const content = await (
+      await readFile(templateBin, { encoding: 'utf-8' })
+    ).replaceAll('{mode}', key)
     await writeFile(filePath, content, { encoding: 'utf-8' })
   })
 }
@@ -51,7 +55,11 @@ async function structurePackage(optionKeys: string[]) {
     ca[key] = `./bin/${key}.mjs`
   })
   pk.bin = ca
-  await writeFile(resolve(t, '..', '..', 'package.json'), JSON.stringify(pk, null, 2), { encoding: 'utf-8' })
+  await writeFile(
+    resolve(t, '..', '..', 'package.json'),
+    JSON.stringify(pk, null, 2),
+    { encoding: 'utf-8' },
+  )
 }
 
 build()
