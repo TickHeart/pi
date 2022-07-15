@@ -70,6 +70,7 @@
     "release": "bumpp --commit --push --tag && npm publish",
     "start": "esno src/index.ts",
     "test": "vitest",
+    "ci": "git-cz",
     "typecheck": "tsc --noEmit",
     "prepare": "husky install",
     "auto": "esno scripts/build.ts",
