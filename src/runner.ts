@@ -10,6 +10,7 @@ import type { AGENTS_KEYS } from './agents'
 import { CMDS } from './agents'
 import { inspectVersion } from './utils/version'
 import { list } from './utils/list'
+import { selectorPackage } from './argv'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -28,16 +29,16 @@ const parseLineFlag = () => {
 }
 
 export async function run(parser: Parser) {
-  const res = await inspectionTime()
-  if (res)
-    await logUSerVersion()
-  const justLog = parseLineFlag()
-  if (justLog)
+  await localDetection()
+
+  if (parseLineFlag())
     return
+
+  const [_cmd, args] = selectorPackage(process.argv.slice(2))
+
   try {
-    const cmd = CMDS[index++] as AGENTS_KEYS
-    const args = process.argv.slice(2)
-    const cmdStr = parser(cmd, args)
+    const cmd = _cmd || CMDS[index++] as AGENTS_KEYS
+    const cmdStr = parser(cmd as any, args as string[])
 
     log(chalk.yellow(`执行 ${cmdStr}`))
 
@@ -56,21 +57,9 @@ export async function run(parser: Parser) {
       index = 0
       return
     }
-    const prompt = [
-      {
-        type: 'confirm',
-        message: `${CMDS[index - 1]}执行失败是否尝试使用${CMDS[index]}执行命令?`,
-        name: 'isOk',
-        prefix: '⚠️',
-        default: false,
-        filter(val: any) {
-          return val.toLowerCase()
-        },
-      },
-    ]
-    const { isOk } = await inquirer.prompt(prompt)
-    if (isOk)
-      run(parser)
+    if (_cmd)
+      return
+    await askForRestart(parser)
   }
 }
 
@@ -102,4 +91,28 @@ async function logUSerVersion() {
   if (isNew)
     return
   log(color(`更新啦更新啦，请升级pi至${lastVersion}`))
+}
+
+async function localDetection() {
+  const res = await inspectionTime()
+  if (res)
+    await logUSerVersion()
+}
+
+async function askForRestart(parser: Parser) {
+  const prompt = [
+    {
+      type: 'confirm',
+      message: `${CMDS[index - 1]}执行失败是否尝试使用${CMDS[index]}执行命令?`,
+      name: 'isOk',
+      prefix: '⚠️',
+      default: false,
+      filter(val: any) {
+        return val.toLowerCase()
+      },
+    },
+  ]
+  const { isOk } = await inquirer.prompt(prompt)
+  if (isOk)
+    await run(parser)
 }
