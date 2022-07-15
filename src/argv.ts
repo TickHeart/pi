@@ -17,14 +17,24 @@ export function selectorPackage(argv: string[]) {
 
 function detectionInstruction(argv: string[]) {
   const param = getArguments(argv)
-  if (param.P || param.pnpm)
-    return 'pnpm'
+  const pnpmAlias = cmds.pnpm.split('|')
+  const yarnAlias = cmds.yarn.split('|')
+  const npmAlias = cmds.npm.split('|')
 
-  if (param.Y || param.yarn)
-    return 'yarn'
+  for (const p of pnpmAlias) {
+    if (param[p])
+      return 'pnpm'
+  }
 
-  if (param.N || param.npm)
-    return 'npm'
+  for (const y of yarnAlias) {
+    if (param[y])
+      return 'yarn'
+  }
+
+  for (const n of npmAlias) {
+    if (param[n])
+      return 'npm'
+  }
 
   return false
 }
