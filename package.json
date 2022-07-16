@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.6.4",
   "private": false,
-  "packageManager": "pnpm@7.1.2",
+  "packageManager": "pnpm@7.5.2",
   "description": "",
   "author": "TickHeart",
   "license": "MIT",
