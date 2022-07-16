@@ -46,6 +46,8 @@ pi list
 
 
 ## 配置
+
+mac 用户可以在`~/.pirc`设置全局配置文件。
   
 ```bash
 # .pirc
