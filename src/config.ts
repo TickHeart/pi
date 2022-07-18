@@ -14,16 +14,20 @@ export async function resolveConfig() {
   }
 }
 
+const cwd = process.cwd()
+
+function havePath(path: string) {
+  const isOk = fse.pathExistsSync(path)
+  return { isOk, path }
+}
+
+const paths = [havePath(resolve(cwd, '.pirc')), havePath(`${process.env.HOME}/.pirc`)]
+
 export function resolveConfigPath() {
-  const cwd = process.cwd()
-  const cwdPath = resolve(cwd, '.pirc')
-
-  if (fse.pathExistsSync(cwdPath))
-    return cwdPath
-
-  const globalPath = `${process.env.HOME}/.pirc`
-  if (fse.pathExistsSync(globalPath))
-    return globalPath
+  for (const s of paths) {
+    if (s.isOk)
+      return s.path
+  }
 
   return null
 }

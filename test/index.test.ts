@@ -1,3 +1,4 @@
+import { log } from 'console'
 import pkg from '../package.json'
 import { resolveConfig } from '../src/config'
 import { list } from '../src/branch/list'
@@ -23,6 +24,7 @@ describe('developer-plus', () => {
 
   it('config', async () => {
     const config = await resolveConfig()
+    log({ config })
     expect(config).toMatchInlineSnapshot(`
       {
         "schedulingSequence": "pnpm|yarn|npm",
