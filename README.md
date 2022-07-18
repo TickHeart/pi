@@ -49,7 +49,7 @@ pi list
 
 mac 用户可以在`~/.pirc`设置全局配置文件。
 
-windows 用户需要两个步骤
+windows 用户设置全局配置文件需要两个步骤
   * 执行 `pi --set-config {path}` {path} 则是你的配置文件路径 
   * 执行 `pi --get-config` 查看是否配置成功
   
