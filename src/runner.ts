@@ -9,35 +9,44 @@ import dayjs from 'dayjs'
 import type { AGENTS_KEYS } from './agents'
 import { CMDS } from './agents'
 import { inspectVersion } from './utils/version'
-import { list } from './utils/list'
+// import { list } from "./utils/list";
 import { selectorPackage } from './argv'
-
+import test from './test'
 // eslint-disable-next-line no-console
 const log = console.log
 let index = 0
 
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
-// parse list command
+// parse list command  不太好扩展 命令多了用switch case了
 const parseLineFlag = () => {
   const args = process.argv.slice(2)
-  if (args[0] === 'list') {
-    list()
-    return true
-  }
+  const key = args[0]
+  const mingLing = test[key]
+  if (mingLing)
+    mingLing.handle()
+
   return false
+  // if (args[0] === "list") {
+  //   let key = args[0];
+  //   let mingLing = test[key];
+  //   mingLing.handle();
+  //   return true;
+  // }
+  // return false;
 }
 
+// 再新增一个参数 代表
 export async function run(parser: Parser) {
   await localDetection()
-
+  // 都是这样的 阻断了
   if (parseLineFlag())
     return
 
   const [_cmd, args] = selectorPackage(process.argv.slice(2))
 
   try {
-    const cmd = _cmd || CMDS[index++] as AGENTS_KEYS
+    const cmd = _cmd || (CMDS[index++] as AGENTS_KEYS)
     const cmdStr = parser(cmd as any, args as string[])
 
     log(chalk.yellow(`执行 ${cmdStr}`))
@@ -70,7 +79,9 @@ const timeFilePath = resolve(cacheDir, 'time.txt')
 
 export async function inspectionTime() {
   const time = await readFile(timeFilePath, { encoding: 'utf-8' })
-  const aftunix = dayjs(time).add(5 * 60, 'seconds').unix()
+  const aftunix = dayjs(time)
+    .add(5 * 60, 'seconds')
+    .unix()
   const now = dayjs().format()
   const nowunix = dayjs(now).unix()
   if (nowunix > aftunix) {
