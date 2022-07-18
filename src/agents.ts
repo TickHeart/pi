@@ -38,6 +38,7 @@ export const options = {
   ec: [['pnpm create @tickh/ec', 'yarn create @tickh/ec', 'npm create @tickh/ec'], '执行 create @tickh/ec'],
   pvite: [['pnpm create vite {0}', 'yarn create vite {0}', 'npm create vite {0}'], '执行 create vite'],
   bb: [['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'], '执行 `build` 指令'],
+  px: [['pnpx {0}', 'npx {0}', 'npx {0}'], '执行 npx'],
 } as Record<string, [string[], string]>
 
 type ValueType = Record<keyof typeof options, string>
