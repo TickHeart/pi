@@ -11,7 +11,7 @@ import { CMDS, setCMDS } from './agents'
 import { inspectVersion } from './utils/version'
 import { selectorPackage } from './argv'
 import { resolveConfig } from './config'
-import { piBranch } from './piBranch'
+import { piBranch } from './branch/branch'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -20,10 +20,10 @@ let index = 0
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
 // parse list command
-const parseLineFlag = () => {
+const parseLineFlag = async () => {
   const args = process.argv.slice(2)
   if (args[0] in piBranch) {
-    piBranch[args[0] as keyof typeof piBranch]()
+    await piBranch[args[0] as keyof typeof piBranch]()
     return true
   }
   return false
@@ -33,7 +33,7 @@ export async function run(parser: Parser) {
   const config = await resolveConfig()
   await localDetection(config)
   setCMDS(config.schedulingSequence.split('|'))
-  if (parseLineFlag())
+  if (await parseLineFlag())
     return
 
   const [_cmd, args] = selectorPackage(process.argv.slice(2))
@@ -93,6 +93,7 @@ async function logUSerVersion() {
   if (isNew)
     return
   log(color(`更新啦更新啦，请升级pi至${lastVersion}`))
+  log(color('可以执行 pi uv 来更新pi'))
 }
 
 async function localDetection(config: {

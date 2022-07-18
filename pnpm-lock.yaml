@@ -31,6 +31,7 @@ specifiers:
   unbuild: ^0.7.4
   unplugin-auto-import: ^0.7.2
   vitest: ^0.12.10
+  ztshared: ^0.0.12
 
 dependencies:
   chalk: 5.0.1
@@ -41,6 +42,7 @@ dependencies:
   inquirer: 9.0.0
   minimist: 1.2.6
   pacote: 13.6.1
+  ztshared: 0.0.12
 
 devDependencies:
   '@antfu/eslint-config': 0.25.2_4x5o4skxv6sl53vpwefgt23khm
@@ -5527,3 +5529,7 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /ztshared/0.0.12:
+    resolution: {integrity: sha512-BlL2X4E85MOW++Hj86IYt2Yk5J1IT6tKehN5FnYDWk+pxDD0EtVTX6HE1ItXTgMWXGaEcrqO3ROddDu1WohSRg==}
+    dev: false

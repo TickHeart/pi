@@ -1,6 +1,6 @@
 import pkg from '../package.json'
 import { resolveConfig } from '../src/config'
-import { list } from '../src/utils/list'
+import { list } from '../src/branch/list'
 import { getLastVersion, inspectVersion } from '../src/utils/version'
 
 describe('developer-plus', () => {
