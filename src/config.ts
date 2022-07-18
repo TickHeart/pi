@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import { readFile } from 'fs/promises'
+import { fileURLToPath } from 'url'
 import ini from 'ini'
 import fse from 'fs-extra'
 
@@ -15,13 +16,17 @@ export async function resolveConfig() {
 }
 
 const cwd = process.cwd()
+const t = fileURLToPath(import.meta.url)
+const root = resolve(t, '..', '..', '..')
+const cacheDir = resolve(root, 'cache')
+const configFilePath = resolve(cacheDir, 'config.txt')
 
 function havePath(path: string) {
   const isOk = fse.pathExistsSync(path)
   return { isOk, path }
 }
 
-const paths = [havePath(resolve(cwd, '.pirc')), havePath(`${process.env.HOME}/.pirc`)]
+const paths = [havePath(resolve(cwd, '.pirc')), havePath(`${process.env.HOME}/.pirc`), havePath(fse.readFileSync(configFilePath, 'utf8'))]
 
 export function resolveConfigPath() {
   for (const s of paths) {

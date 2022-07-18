@@ -23,7 +23,7 @@ type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 const parseLineFlag = async () => {
   const args = process.argv.slice(2)
   if (args[0] in piBranch) {
-    await piBranch[args[0] as keyof typeof piBranch]()
+    await piBranch[args[0] as keyof typeof piBranch](args)
     return true
   }
   return false

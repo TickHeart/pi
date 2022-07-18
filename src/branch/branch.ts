@@ -1,12 +1,19 @@
 import { log } from 'console'
 import pkg from '../../package.json'
 import { list } from './list'
+import setConfig, { getConfigFileBody } from './setConfig'
 import uv from './uv'
 
-export const piBranch = {
+type BranchFn = (args?: string[]) => Promise<void> | void
+
+export const piBranch: Record<string, BranchFn> = {
   list,
   '-v': function () {
     log(pkg.version)
   },
   uv,
+  '--set-config': setConfig,
+  '--get-config': () => {
+    log(getConfigFileBody())
+  },
 }
