@@ -25,6 +25,7 @@ describe('developer-plus', () => {
     const config = await resolveConfig()
     expect(config).toMatchInlineSnapshot(`
       {
+        "schedulingSequence": "pnpm|yarn|npm",
         "skipVersionTesting": false,
       }
     `)
