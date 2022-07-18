@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.6.7",
+  "version": "0.7.0",
   "private": false,
   "packageManager": "pnpm@7.1.2",
   "description": "",
@@ -84,7 +84,8 @@
     "ini": "^3.0.0",
     "inquirer": "^9.0.0",
     "minimist": "^1.2.6",
-    "pacote": "^13.6.1"
+    "pacote": "^13.6.1",
+    "ztshared": "^0.0.12"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.25.2",
