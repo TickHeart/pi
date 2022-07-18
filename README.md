@@ -58,3 +58,13 @@ skipVersionTesting=true // 这会跳过工具内置的版本检测
 # default：pnpm|yarn|npm
 schedulingSequence="pnpm|npm|yarn" 切换默认的调度顺序
 ```
+
+## 拦截脚本
+
+```bash
+pi list # 展示pi所有的指令
+
+pi uv # 自动更新 pi 版本
+
+pi -v # 显示当前的 pi 版本
+```
