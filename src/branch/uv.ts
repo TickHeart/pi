@@ -28,7 +28,7 @@ export default async function uv() {
 async function useListExecaCommand(commds: string[] | string) {
   const cmd = isArray(commds) ? commds : [commds]
   for await (const commd of cmd as string[]) {
-    await execaCommand(commd, {
+    execaCommand(commd, {
       stdio: 'inherit',
       encoding: 'utf-8',
     })
