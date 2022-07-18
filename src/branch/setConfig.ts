@@ -10,7 +10,7 @@ const configFilePath = resolve(cacheDir, 'config.txt')
 export default async function setConfig(args?: string[]) {
   const [, configPath] = args!
 
-  if (!configPath)
+  if (configPath)
     fse.writeFileSync(configFilePath, configPath, { encoding: 'utf-8' })
 }
 
