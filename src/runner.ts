@@ -9,9 +9,9 @@ import dayjs from 'dayjs'
 import type { AGENTS_KEYS } from './agents'
 import { CMDS, setCMDS } from './agents'
 import { inspectVersion } from './utils/version'
-import { list } from './utils/list'
 import { selectorPackage } from './argv'
 import { resolveConfig } from './config'
+import { piBranch } from './piBranch'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -22,8 +22,8 @@ type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 // parse list command
 const parseLineFlag = () => {
   const args = process.argv.slice(2)
-  if (args[0] === 'list') {
-    list()
+  if (args[0] in piBranch) {
+    piBranch[args[0] as keyof typeof piBranch]()
     return true
   }
   return false
