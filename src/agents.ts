@@ -9,7 +9,7 @@ enum Tools {
  *  Record<aliasName, [[pnpm command], [yarn command], [npm command], description]>
  */
 export const options = {
-  pi: [['pnpm install', 'yarn', 'npm install'], '安装一个依赖'],
+  pi: [['pnpm install {0}', 'yarn {0}', 'npm install {0}'], '安装一个依赖'],
   pif: [['pnpm install {p}', 'yarn {p}', 'npm install'].map(i =>
     i.replace(/\{p\}/, '--frozen-lockfile'),
   ), '安装一个依赖携带 `frozen-lockfile` flag'],
