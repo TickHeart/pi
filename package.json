@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.7.10",
   "private": false,
-  "packageManager": "pnpm@7.1.2",
+  "packageManager": "pnpm@7.5.2",
   "description": "",
   "author": "TickHeart",
   "license": "MIT",
@@ -109,7 +109,7 @@
     "typescript": "^4.7.4",
     "unbuild": "^0.7.4",
     "unplugin-auto-import": "^0.7.2",
-    "vitest": "^0.12.10"
+    "vitest": "0.18.1"
   },
   "lint-staged": {
     "*.{js,ts,json,md}": [
