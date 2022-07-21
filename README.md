@@ -6,6 +6,12 @@ no more care about what package manager is this repo use;
 
 one line, try all.
 
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/TickHeart/pi.svg)](https://starchart.cc/TickHeart/pi)
+
+
 ## 安装
   
 ```bash
