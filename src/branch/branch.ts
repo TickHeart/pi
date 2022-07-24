@@ -14,6 +14,6 @@ export const piBranch: Record<string, BranchFn> = {
   uv,
   '--set-config': setConfig,
   '--get-config': () => {
-    log(getConfigFileBody())
+    log(`配置文件路径${getConfigFileBody().file}`)
   },
 }
