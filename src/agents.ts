@@ -36,6 +36,7 @@ export const options = {
   pt: [['pnpm run test {0}', 'yarn run test {0}', 'npm run test {0}'], '执行 `test` 指令'],
   ptu: [['pnpm run test --update', 'yarn run test --update', 'npm run test --update'], '执行 `test` 指令携带 `update` flag'],
   ec: [['pnpm create @tickh/ec', 'yarn create @tickh/ec', 'npm create @tickh/ec'], '执行 create @tickh/ec'],
+  poo: [['pnpm create @tickh/oomoo', 'yarn create @tickh/oomoo', 'npm create @tickh/oomoo'], '执行 create @tickh/oomoo'],
   pvite: [['pnpm create vite {0}', 'yarn create vite {0}', 'npm create vite {0}'], '执行 create vite'],
   bb: [['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'], '执行 `build` 指令'],
   px: [['pnpx {0}', 'npx {0}', 'npx {0}'], '执行 npx'],
