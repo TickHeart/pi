@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.7.14",
+  "version": "0.7.15",
   "private": false,
   "packageManager": "pnpm@7.5.2",
   "description": "",
@@ -53,6 +53,7 @@
     "pt": "./bin/pt.mjs",
     "ptu": "./bin/ptu.mjs",
     "ec": "./bin/ec.mjs",
+    "poo": "./bin/poo.mjs",
     "pvite": "./bin/pvite.mjs",
     "bb": "./bin/bb.mjs",
     "px": "./bin/px.mjs"
