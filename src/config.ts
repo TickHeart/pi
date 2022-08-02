@@ -4,14 +4,19 @@ import { fileURLToPath } from 'url'
 import ini from 'ini'
 import fse from 'fs-extra'
 
+export const DEFAULT_OPTIONS = {
+  skipVersionTesting: false,
+  schedulingSequence: 'pnpm|yarn|npm',
+}
+
 export async function resolveConfig() {
   const pircPath = resolveConfigPath()
   if (pircPath) {
-    const { skipVersionTesting = false, schedulingSequence = 'pnpm|yarn|npm' } = ini.parse(await readFile(pircPath, { encoding: 'utf-8' }))
-    return { skipVersionTesting, schedulingSequence }
+    const options = ini.parse(await readFile(pircPath, { encoding: 'utf-8' }))
+    return { ...DEFAULT_OPTIONS, ...options }
   }
   else {
-    return { skipVersionTesting: false, schedulingSequence: 'pnpm|yarn|npm' }
+    return DEFAULT_OPTIONS
   }
 }
 
