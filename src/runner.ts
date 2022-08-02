@@ -1,21 +1,23 @@
 #!/usr/bin/env node
-import { fileURLToPath } from 'url'
-import { resolve } from 'path'
-import { readFile, writeFile } from 'fs/promises'
+
 import { execaCommand } from 'execa'
 import chalk from 'chalk'
 import inquirer from 'inquirer'
-import dayjs from 'dayjs'
+
 import type { AGENTS_KEYS } from './agents'
 import { CMDS, setCMDS } from './agents'
-import { inspectVersion } from './utils/version'
 import { selectorPackage } from './argv'
 import { resolveConfig } from './config'
 import { piBranch } from './branch/branch'
+import { localDetection } from './version'
 
 // eslint-disable-next-line no-console
 const log = console.log
 let index = 0
+
+export function getIndex() {
+  return index
+}
 
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
@@ -63,47 +65,6 @@ export async function run(parser: Parser) {
       return
     await askForRestart(parser)
   }
-}
-
-const t = fileURLToPath(import.meta.url)
-const root = resolve(t, '..', '..', '..')
-const cacheDir = resolve(root, 'cache')
-const timeFilePath = resolve(cacheDir, 'time.txt')
-
-export async function inspectionTime() {
-  const time = await readFile(timeFilePath, { encoding: 'utf-8' })
-  const aftunix = dayjs(time).add(1, 'hour').unix()
-  const now = dayjs().format()
-  const nowunix = dayjs(now).unix()
-  if (nowunix > aftunix) {
-    await writeFile(timeFilePath, now.toString(), { encoding: 'utf-8' })
-    return true
-  }
-  else {
-    return false
-  }
-}
-
-async function logUSerVersion() {
-  const color = chalk.rgb(125, 255, 234)
-  if (index !== 0)
-    return
-  const [isNew, userVersion, lastVersion] = await inspectVersion()
-  log(color(`您的pi版本是${userVersion}`))
-  if (isNew)
-    return
-  log(color(`更新啦更新啦，请升级pi至${lastVersion}`))
-  log(color('可以执行 pi uv 来更新pi'))
-}
-
-async function localDetection(config: {
-  skipVersionTesting: any
-}) {
-  if (config.skipVersionTesting)
-    return
-  const res = await inspectionTime()
-  if (res)
-    await logUSerVersion()
 }
 
 async function askForRestart(parser: Parser) {
