@@ -84,3 +84,8 @@ pi uv # 自动更新 pi 版本
 
 pi -v # 显示当前的 pi 版本
 ```
+
+## 特殊指令
+
+`ec`: https://github.com/TickHeart/ec
+`poo`: https://github.com/TickHeart/oomoo
