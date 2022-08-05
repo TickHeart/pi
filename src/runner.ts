@@ -31,8 +31,21 @@ export async function run(parser: Parser) {
     return
   const piBrain = await brain()
   const [_cmd, args] = selectorPackage(process.argv.slice(2))
+
   try {
-    const cmd = _cmd || await piBrain.useBrain()
+    let cmd = ''
+    if (!_cmd) {
+      const anat = await piBrain.useBrain()
+      if (anat) { cmd = anat }
+
+      else {
+        log('为你的新项目指定一个包管理器吧，执行命令时请携带 -Y 或 -N 或 -P 参数')
+        return
+      }
+    }
+    else {
+      cmd = _cmd as string
+    }
 
     const cmdStr = parser(cmd as any, args as string[])
     log(chalk.yellow(`执行 ${cmdStr}`))

@@ -35,7 +35,7 @@ export async function brain() {
       return anat
     }
     else {
-      return 'pnpm'
+      return null
     }
   }
 
@@ -105,7 +105,8 @@ async function resolvePiBrain() {
   return yaml.parse(fileBody)
 }
 
-async function checkPiBrainFile(brainPath = path.resolve(`${process.env.HOME}/.pi_brain.yaml`)) {
+async function checkPiBrainFile() {
+  const brainPath = process.platform === 'win32' ? path.resolve('C:\Users\Administrator') : path.resolve(`${process.env.HOME}/.pi_brain.yaml`)
   const isHave = await fe.pathExists(brainPath)
   if (!isHave)
     await fe.writeFile(brainPath, '', { encoding: 'utf-8' })
