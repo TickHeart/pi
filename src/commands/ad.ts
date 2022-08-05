@@ -4,5 +4,5 @@ import { run } from '../runner'
 run((cmd, args) => {
   const argStr = args!.join(' ')
   const ms = AGENTS[cmd]
-  return ms.addw.replace('{0}', argStr)
+  return ms.ad.replace('{0}', argStr)
 })

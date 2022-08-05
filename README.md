@@ -18,6 +18,17 @@ one line, try all.
 pnpm add @tickh/pi -g
 ```
 
+## 注意
+pi 0.9.2 版本起发生巨大改变
+1. 放弃了原来的调度系统采用了更智能的脑图
+2. add -> ad
+3. addf -> adf
+4. addw -> adw
+5. bb -> pb
+6. windows 用户在使用新版本的 pi 时需要执行, !!!这十分重要!!!
+  * 执行 `pi --set-pid {path}` {path} 则是你文件夹具体地址
+  * 执行 `pi --get-pid` 查看是否配置成功
+
 ## 优先度
 
 `pnpm > yarn > npm`

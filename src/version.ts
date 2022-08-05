@@ -5,7 +5,6 @@ import { log } from 'console'
 import dayjs from 'dayjs'
 import chalk from 'chalk'
 import { inspectVersion } from './utils/version'
-import { getIndex } from './runner'
 
 const t = fileURLToPath(import.meta.url)
 const root = resolve(t, '..', '..', '..')
@@ -38,8 +37,6 @@ export async function inspectionTime() {
 
 async function logUSerVersion() {
   const color = chalk.rgb(125, 255, 234)
-  if (getIndex() !== 0)
-    return
   const [isNew, userVersion, lastVersion] = await inspectVersion()
   log(color(`您的pi版本是${userVersion}`))
   if (isNew)

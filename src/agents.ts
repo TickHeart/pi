@@ -13,8 +13,8 @@ export const options = {
   pif: [['pnpm install {p}', 'yarn {p}', 'npm install'].map(i =>
     i.replace(/\{p\}/, '--frozen-lockfile'),
   ), '安装一个依赖携带 `frozen-lockfile` flag'],
-  add: [['pnpm add {0}', 'yarn add {0}', 'npm install {0}'], '安装一个依赖'],
-  addf: [['pnpm add {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
+  ad: [['pnpm add {0}', 'yarn add {0}', 'npm install {0}'], '安装一个依赖'],
+  adf: [['pnpm add {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
     i.replace(/\{p\}/, '--prefer-offline'),
   ), '安装一个依赖携带 `prefer-offline` flag'],
   pio: [['pnpm i {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
@@ -26,7 +26,7 @@ export const options = {
   pios: [['pnpm i {p} {0}', 'yarn add {p} {0}', 'npm install {0}'].map(i =>
     i.replace(/\{p\}/, '--prefer-offline --shamefully-hoist'),
   ), 'pio 和 pis 的结合体'],
-  addw: [['pnpm add {p} {0}', 'yarn add {0}', 'npm install {0}'].map(i => i.replace('{p}', '--workspace')), '安装一个依赖携带 `workspace` flag'],
+  adw: [['pnpm add {p} {0}', 'yarn add {0}', 'npm install {0}'].map(i => i.replace('{p}', '--workspace')), '安装一个依赖携带 `workspace` flag'],
   pu: [['pnpm update', 'yarn update', 'npm update'], '升级依赖'],
   init: [['pnpm init', 'yarn init -y', 'npm init -y'], '初始化项目'],
   pr: [['pnpm run {0}', 'yarn run {0}', 'npm run {0}'], '执行一个命令'],
@@ -38,7 +38,7 @@ export const options = {
   ec: [['pnpm create @tickh/ec', 'yarn create @tickh/ec', 'npm create @tickh/ec'], '执行 create @tickh/ec'],
   poo: [['pnpm create @tickh/oomoo', 'yarn create @tickh/oomoo', 'npm create @tickh/oomoo'], '执行 create @tickh/oomoo'],
   pvite: [['pnpm create vite {0}', 'yarn create vite {0}', 'npm create vite {0}'], '执行 create vite'],
-  bb: [['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'], '执行 `build` 指令'],
+  pb: [['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'], '执行 `build` 指令'],
   px: [['pnpx {0}', 'npx {0}', 'npx {0}'], '执行 npx'],
 } as Record<string, [string[], string]>
 

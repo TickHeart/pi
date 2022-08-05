@@ -6,7 +6,6 @@ import fse from 'fs-extra'
 
 export const DEFAULT_OPTIONS = {
   skipVersionTesting: false,
-  schedulingSequence: 'pnpm|yarn|npm',
 }
 
 export async function resolveConfig() {
@@ -41,3 +40,4 @@ export function resolveConfigPath() {
 
   return null
 }
+
