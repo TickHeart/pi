@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "private": false,
   "packageManager": "pnpm@7.5.2",
   "description": "",
@@ -38,12 +38,12 @@
   "bin": {
     "pi": "./bin/pi.mjs",
     "pif": "./bin/pif.mjs",
-    "add": "./bin/add.mjs",
-    "addf": "./bin/addf.mjs",
+    "ad": "./bin/ad.mjs",
+    "adf": "./bin/adf.mjs",
     "pio": "./bin/pio.mjs",
     "pis": "./bin/pis.mjs",
     "pios": "./bin/pios.mjs",
-    "addw": "./bin/addw.mjs",
+    "adw": "./bin/adw.mjs",
     "pu": "./bin/pu.mjs",
     "init": "./bin/init.mjs",
     "pr": "./bin/pr.mjs",
@@ -55,7 +55,7 @@
     "ec": "./bin/ec.mjs",
     "poo": "./bin/poo.mjs",
     "pvite": "./bin/pvite.mjs",
-    "bb": "./bin/bb.mjs",
+    "pb": "./bin/pb.mjs",
     "px": "./bin/px.mjs"
   },
   "files": [
