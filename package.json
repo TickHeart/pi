@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "private": false,
   "packageManager": "pnpm@7.5.2",
   "description": "",
