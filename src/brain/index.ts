@@ -1,4 +1,3 @@
-import path from 'path'
 import fs from 'fs/promises'
 import { log } from 'console'
 import fe from 'fs-extra'
@@ -6,8 +5,10 @@ import yaml from 'yaml'
 import { findUp } from 'find-up'
 import chalk from 'chalk'
 import Table from 'cli-table3'
+import type { Options } from '../config'
+import type { AGENTS_KEYS } from '../agents'
 
-function logTable(p: number, y: number, n: number) {
+function logTable(p: boolean, y: boolean, n: boolean) {
   const table = new Table({
     head: ['pnpm', 'yarn', 'npm'],
   })
@@ -17,20 +18,20 @@ function logTable(p: number, y: number, n: number) {
 }
 
 interface ConfigItem {
-  npm: number
-  yarn: number
-  pnpm: number
+  npm: boolean
+  yarn: boolean
+  pnpm: boolean
 }
 
-export async function brain() {
-  const config = await resolvePiBrain() as Record<string, ConfigItem> || {}
+export async function brain(_config: Options) {
+  const config = await resolvePiBrain(_config) as Record<string, ConfigItem> | false
+  const c = config || {}
   const pkg = await resolvePkg()
 
   async function useBrain() {
     const { name } = pkg
-
-    if (name in config) {
-      const val = config[name]
+    if (name in c) {
+      const val = c[name]
       const anat = maximumUse(val)
       return anat
     }
@@ -43,26 +44,31 @@ export async function brain() {
     if (!pkg)
       return
     const { name } = pkg
+    if (name in c) {
+      const val = c[name]
+      for (const key in val) {
+        if (key === anat)
+          val[key] = true
 
-    if (name in config) {
-      const val = config[name]
-      val[anat]++
+        else
+          val[key as AGENTS_KEYS] = false
+      }
       logTable(val.pnpm, val.yarn, val.npm)
     }
     else {
       const item = {
-        pnpm: 0,
-        yarn: 0,
-        npm: 0,
+        pnpm: false,
+        yarn: false,
+        npm: false,
       }
-      item[anat] = item[anat] + 1
-      config[name] = item
+      item[anat] = true
+      c[name] = item
       logTable(item.pnpm, item.yarn, item.npm)
     }
 
-    const fileBody = yaml.stringify(config)
+    const fileBody = yaml.stringify(c)
 
-    await fs.writeFile(await checkPiBrainFile(), fileBody, { encoding: 'utf-8' })
+    await fs.writeFile(await checkPiBrainFile(_config) as string, fileBody, { encoding: 'utf-8' })
   }
 
   return {
@@ -73,12 +79,10 @@ export async function brain() {
 
 function maximumUse(val: ConfigItem) {
   let anat = ''
-  let num = 0
+
   Object.keys(val).forEach((key) => {
-    if (val[key as keyof typeof val] >= num) {
+    if (val[key as keyof typeof val])
       anat = key
-      num = val[key as keyof typeof val]
-    }
   })
   return anat
 }
@@ -99,14 +103,21 @@ async function findPkgPath() {
   return await findUp('package.json', { cwd })
 }
 
-async function resolvePiBrain() {
-  const resolvePath = await checkPiBrainFile()
+async function resolvePiBrain(_config: Options): Promise<string | false> {
+  const resolvePath = await checkPiBrainFile(_config)
+  if (!resolvePath)
+    return false
   const fileBody = await fs.readFile(resolvePath, 'utf-8')
   return yaml.parse(fileBody)
 }
 
-async function checkPiBrainFile() {
-  const brainPath = process.platform === 'win32' ? path.resolve('C:\Users\Administrator') : path.resolve(`${process.env.HOME}/.pi_brain.yaml`)
+async function checkPiBrainFile(_config: Options) {
+  const { piBranchPath: brainPath } = _config
+  if (!brainPath) {
+    log(chalk.red('windows 用户请设定 piBranchPath 的路径'))
+    return false
+  }
+
   const isHave = await fe.pathExists(brainPath)
   if (!isHave)
     await fe.writeFile(brainPath, '', { encoding: 'utf-8' })

@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 import { readFile } from 'fs/promises'
 import { fileURLToPath } from 'url'
 import ini from 'ini'
@@ -6,7 +6,9 @@ import fse from 'fs-extra'
 
 export const DEFAULT_OPTIONS = {
   skipVersionTesting: false,
+  piBranchPath: process.platform === 'win32' ? null : path.resolve(`${process.env.HOME}/.pi_brain.yaml`),
 }
+export type Options = typeof DEFAULT_OPTIONS
 
 export async function resolveConfig() {
   const pircPath = resolveConfigPath()

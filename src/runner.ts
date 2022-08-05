@@ -29,7 +29,7 @@ export async function run(parser: Parser) {
   await localDetection(config)
   if (await parseLineFlag())
     return
-  const piBrain = await brain()
+  const piBrain = await brain(config)
   const [_cmd, args] = selectorPackage(process.argv.slice(2))
 
   try {
@@ -45,6 +45,7 @@ export async function run(parser: Parser) {
     }
     else {
       cmd = _cmd as string
+      await piBrain.addMemory(cmd as AGENTS_KEYS)
     }
 
     const cmdStr = parser(cmd as any, args as string[])
@@ -54,8 +55,6 @@ export async function run(parser: Parser) {
       stdio: 'inherit',
       encoding: 'utf-8',
     })
-
-    await piBrain.addMemory(cmd as AGENTS_KEYS)
 
     const color = chalk.rgb(138, 255, 128)
     log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
