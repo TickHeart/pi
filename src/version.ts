@@ -23,7 +23,7 @@ export async function localDetection(config: {
 
 export async function inspectionTime() {
   const time = await readFile(timeFilePath, { encoding: 'utf-8' })
-  const aftunix = dayjs(time).add(1, 'hour').unix()
+  const aftunix = dayjs(time).add(5, 'hour').unix()
   const now = dayjs().format()
   const nowunix = dayjs(now).unix()
   if (nowunix > aftunix) {

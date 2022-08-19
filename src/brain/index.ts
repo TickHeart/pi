@@ -24,14 +24,13 @@ interface ConfigItem {
 }
 
 export async function brain(_config: Options) {
-  const config = await resolvePiBrain(_config) as Record<string, ConfigItem> | false
-  const c = config || {}
+  const config = await resolvePiBrain(_config) as Record<string, ConfigItem> | false || {}
   const pkg = await resolvePkg()
 
   async function useBrain() {
     const { name } = pkg
-    if (name in c) {
-      const val = c[name]
+    if (name in config) {
+      const val = config[name]
       const anat = maximumUse(val)
       return anat
     }
@@ -44,8 +43,8 @@ export async function brain(_config: Options) {
     if (!pkg)
       return
     const { name } = pkg
-    if (name in c) {
-      const val = c[name]
+    if (name in config) {
+      const val = config[name]
       for (const key in val) {
         if (key === anat)
           val[key] = true
@@ -62,11 +61,11 @@ export async function brain(_config: Options) {
         npm: false,
       }
       item[anat] = true
-      c[name] = item
+      config[name] = item
       logTable(item.pnpm, item.yarn, item.npm)
     }
 
-    const fileBody = yaml.stringify(c)
+    const fileBody = yaml.stringify(config)
 
     await fs.writeFile(await checkPiBrainFile(_config) as string, fileBody, { encoding: 'utf-8' })
   }
