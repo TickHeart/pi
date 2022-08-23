@@ -1,5 +1,6 @@
 import { log } from 'console'
 import pkg from '../../package.json'
+import { brainView } from '../brain/view'
 import { list } from './list'
 import setConfig, { getConfigFileBody } from './setConfig'
 import uv from './uv'
@@ -16,4 +17,5 @@ export const piBranch: Record<string, BranchFn> = {
   '--get-config': () => {
     log(`配置文件路径${getConfigFileBody().body}`)
   },
+  'brain': brainView,
 }

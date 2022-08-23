@@ -41,6 +41,9 @@ async function logUSerVersion() {
   log(color(`您的pi版本是${userVersion}`))
   if (isNew)
     return
+  if (/beta/.test(lastVersion as string))
+    return
+
   log(color(`更新啦更新啦，请升级pi至${lastVersion}`))
   log(color('可以执行 pi uv 来更新pi'))
 }

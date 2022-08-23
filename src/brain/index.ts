@@ -102,7 +102,7 @@ async function findPkgPath() {
   return await findUp('package.json', { cwd })
 }
 
-async function resolvePiBrain(_config: Options): Promise<string | false> {
+export async function resolvePiBrain(_config: Options): Promise<Record<string, { pnpm: boolean; yarn: boolean; npm: boolean }> | false> {
   const resolvePath = await checkPiBrainFile(_config)
   if (!resolvePath)
     return false
