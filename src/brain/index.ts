@@ -86,7 +86,7 @@ function maximumUse(val: ConfigItem) {
   return anat
 }
 
-async function resolvePkg() {
+export async function resolvePkg() {
   const pkgPath = await findPkgPath()
 
   if (!pkgPath) {

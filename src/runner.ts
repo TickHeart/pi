@@ -8,6 +8,8 @@ import { resolveConfig } from './config'
 import { piBranch } from './branch/branch'
 import { localDetection } from './version'
 import { brain } from './brain'
+import ss from 'string-similarity'
+import { sc } from './branch/sc'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -49,17 +51,46 @@ export async function run(parser: Parser) {
     }
 
     const cmdStr = parser(cmd as any, args as string[])
-    log(chalk.yellow(`执行 ${cmdStr}`))
+    const prCmdStr =  await matchingPr(cmdStr)
+    log(chalk.yellow(`执行 ${prCmdStr || cmdStr}`))
 
-    await execaCommand(cmdStr, {
+    await execaCommand(prCmdStr || cmdStr, {
       stdio: 'inherit',
       encoding: 'utf-8',
     })
+
 
     const color = chalk.rgb(138, 255, 128)
     log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
   }
   catch {
   }
+}
+
+async function matchingPr(cmd: string) {
+  if (/^(pnpm|yarn|npm)\srun/.test(cmd)) {
+    const cmds = cmd.split(' ')
+    const alias = cmds[cmds.length - 1].trim()
+    const scripts = await sc()
+    if (!scripts) {
+      return false
+    }
+    let s = '',
+      num = 0
+    Object.keys(scripts).forEach((it: string) => {
+      const n = ss.compareTwoStrings(it, alias)
+      if (n > num) {
+        num = n
+        s = it
+      }
+    })
+    if (!s) {
+      return false
+    } else {
+      cmds[cmds.length - 1] = s
+      return cmds.join(' ')
+    }
+  } 
+  return false
 }
 
