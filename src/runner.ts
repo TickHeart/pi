@@ -2,13 +2,13 @@
 
 import { execaCommand } from 'execa'
 import chalk from 'chalk'
+import ss from 'string-similarity'
 import type { AGENTS_KEYS } from './agents'
 import { selectorPackage } from './argv'
 import { resolveConfig } from './config'
 import { piBranch } from './branch/branch'
 import { localDetection } from './version'
 import { brain } from './brain'
-import ss from 'string-similarity'
 import { sc } from './branch/sc'
 
 // eslint-disable-next-line no-console
@@ -51,14 +51,13 @@ export async function run(parser: Parser) {
     }
 
     const cmdStr = parser(cmd as any, args as string[])
-    const prCmdStr =  await matchingPr(cmdStr)
+    const prCmdStr = await matchingPr(cmdStr)
     log(chalk.yellow(`执行 ${prCmdStr || cmdStr}`))
 
     await execaCommand(prCmdStr || cmdStr, {
       stdio: 'inherit',
       encoding: 'utf-8',
     })
-
 
     const color = chalk.rgb(138, 255, 128)
     log(color('谢谢您使用pi，祝您生活愉快，工作顺利。'))
@@ -70,28 +69,21 @@ export async function run(parser: Parser) {
 async function matchingPr(cmd: string) {
   if (/^(pnpm|yarn|npm)\srun/.test(cmd)) {
     const cmds = cmd.split(' ')
-    const alias = cmds[cmds.length - 1].trim()
+    const alias = cmds[2].trim()
     const res = await sc(false)
-    if (!res) {
+    if (!res)
       return false
-    }
-    let s = '',
-      num = 0
-    Object.keys(res.scripts).forEach((it: string) => {
-      const n = ss.compareTwoStrings(it, alias)
-      if (n > num) {
-        num = n
-        s = it
-      }
-    })
-    if (!s) {
+
+    const keys = Object.keys(res.scripts)
+
+    if (keys.length === 0)
       return false
-    } else {
-      cmds[cmds.length - 1] = s
+
+    const match = ss.findBestMatch(alias, keys)
+    if (alias !== match.bestMatch.target)
       res.logTable()
-      return cmds.join(' ')
-    }
-  } 
+    return cmd.replace(alias, match.bestMatch.target)
+  }
   return false
 }
 
