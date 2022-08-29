@@ -103,3 +103,7 @@ pi -v # 显示当前的 pi 版本
 + `ec`: https://github.com/TickHeart/ec
 
 + `poo`: https://github.com/TickHeart/oomoo
+
+## 鸣谢
+
+灵感来自于 antfu 大佬的 [ni](https://github.com/antfu/ni)，非常感谢！希望大家给 pi 点 star 前先给 ni 点star

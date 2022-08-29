@@ -18,7 +18,12 @@ export async function sc(isLog = true) {
   Object.keys(scripts).forEach((key: string) => {
     table.push([chalk.blue(key), chalk.green(scripts[key])])
   })
-  if(isLog)
+
+  function logTable() {
     log(table.toString())
-  return scripts
+  }
+
+  if(isLog)
+    logTable()
+  return { scripts, logTable }
 }

@@ -71,13 +71,13 @@ async function matchingPr(cmd: string) {
   if (/^(pnpm|yarn|npm)\srun/.test(cmd)) {
     const cmds = cmd.split(' ')
     const alias = cmds[cmds.length - 1].trim()
-    const scripts = await sc()
-    if (!scripts) {
+    const res = await sc(false)
+    if (!res) {
       return false
     }
     let s = '',
       num = 0
-    Object.keys(scripts).forEach((it: string) => {
+    Object.keys(res.scripts).forEach((it: string) => {
       const n = ss.compareTwoStrings(it, alias)
       if (n > num) {
         num = n
@@ -88,6 +88,7 @@ async function matchingPr(cmd: string) {
       return false
     } else {
       cmds[cmds.length - 1] = s
+      res.logTable()
       return cmds.join(' ')
     }
   } 
