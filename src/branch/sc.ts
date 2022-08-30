@@ -23,7 +23,7 @@ export async function sc(isLog = true) {
     log(table.toString())
   }
 
-  if(isLog)
+  if (isLog)
     logTable()
   return { scripts, logTable }
 }
