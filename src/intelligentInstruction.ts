@@ -1,4 +1,4 @@
-import ss from 'x z'
+import ss from 'string-similarity'
 import { sc } from './branch/sc'
 
 export async function intelligentInstruction(cmd: string) {
