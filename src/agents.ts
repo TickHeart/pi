@@ -40,6 +40,7 @@ export const options = {
   pvite: [['pnpm create vite {0}', 'yarn create vite {0}', 'npm create vite {0}'], '执行 create vite'],
   pb: [['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'], '执行 `build` 指令'],
   px: [['pnpx {0}', 'npx {0}', 'npx {0}'], '执行 npx'],
+  psf: [['pnpm start --filter {0}'], '执行 monorepo子项目'],
 } as Record<string, [string[], string]>
 
 type ValueType = Record<keyof typeof options, string>
