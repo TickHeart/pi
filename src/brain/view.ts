@@ -18,6 +18,6 @@ export async function brainView() {
   console.log(table.toString())
 }
 
-function getEmoji(value: boolean) {
+export function getEmoji(value: boolean) {
   return value ? '✅' : '❌'
 }

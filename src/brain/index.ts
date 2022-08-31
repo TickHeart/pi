@@ -7,12 +7,13 @@ import chalk from 'chalk'
 import Table from 'cli-table3'
 import type { Options } from '../config'
 import type { AGENTS_KEYS } from '../agents'
+import { getEmoji } from './view'
 
 function logTable(p: boolean, y: boolean, n: boolean) {
   const table = new Table({
     head: ['pnpm', 'yarn', 'npm'],
   })
-  table.push([p, y, n])
+  table.push([getEmoji(p), getEmoji(y), getEmoji(n)])
   // eslint-disable-next-line no-console
   console.log(table.toString())
 }
