@@ -56,7 +56,8 @@
     "poo": "./bin/poo.mjs",
     "pvite": "./bin/pvite.mjs",
     "pb": "./bin/pb.mjs",
-    "px": "./bin/px.mjs"
+    "px": "./bin/px.mjs",
+    "psf": "./bin/psf.mjs"
   },
   "files": [
     "dist",
