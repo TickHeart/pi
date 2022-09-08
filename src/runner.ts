@@ -50,6 +50,7 @@ export async function run(parser: Parser) {
     }
 
     const cmdStr = parser(cmd as any, args as string[])
+
     const prCmdStr = await intelligentInstruction(cmdStr)
     log(chalk.yellow(`执行 ${prCmdStr || cmdStr}`))
 

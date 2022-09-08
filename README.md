@@ -96,6 +96,16 @@ pi uv # 自动更新 pi 版本
 pi -v # 显示当前的 pi 版本
 ```
 
+## 指定已经存在的包版本的升降
+``` bash
+pi -u vue next # 将vue的版本更新至下一个版本
+pi -u vue n # 上述的简写
+
+pi -u vue 3.2.3 # 将vue的版本更新至指定版本
+pi -u vue v3.2.3
+pi -u vue V3.2.3
+```
+
 ## 特殊指令
 
 + `ec`: https://github.com/TickHeart/ec

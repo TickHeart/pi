@@ -4,6 +4,7 @@ import { brainView } from '../brain/view'
 import { list } from './list'
 import { sc } from './sc'
 import setConfig, { getConfigFileBody } from './setConfig'
+import { u } from './u'
 import uv from './uv'
 
 type BranchFn = (...args: any) => Promise<any> | any
@@ -20,4 +21,5 @@ export const piBranch: Record<string, BranchFn> = {
   },
   'brain': brainView,
   sc,
+  '-u': u,
 }
