@@ -1,33 +1,23 @@
 import { log } from 'console'
 import { execaCommand } from 'execa'
 import pacote from 'pacote'
+import type { MaybeNull } from 'ztshared/index'
 import { resolvePkg } from '../brain'
 export async function u(args?: string[]) {
   const [, packageName, keyWord] = args!
   if (keyWord === 'n' || keyWord === 'next') {
     const res = await pacote.packument(packageName)
-    const versions = Object.keys(res.versions)
+    const historicalVersion = Object.keys(res.versions)
 
-    const pkg = await resolvePkg()
-    const { dependencies, devDependencies } = pkg
-    let version = ''
-    if (packageName in devDependencies)
-      version = devDependencies[packageName]
+    const currentVersion = await findDependenciesVersion(packageName)
 
-    else if (packageName in dependencies)
-      version = dependencies[packageName]
-    if (!version)
-      return log('您没有下载此项依赖')
+    const index = historicalVersion.findIndex(it => it === currentVersion)
 
-    version = version.replace(/(\^|~)/, '')
-
-    const index = versions.findIndex(it => it === version)
-
-    if (index === versions.length - 1)
+    if (index === historicalVersion.length - 1)
       return log('当前您的版本是最新的')
     if (index === -1)
       return log('发生错误')
-    await execaCommand(`pio ${packageName}@${versions[index + 1]}`, {
+    await execaCommand(`pio ${packageName}@${historicalVersion[index + 1]}`, {
       stdio: 'inherit',
       encoding: 'utf-8',
     })
@@ -41,4 +31,25 @@ export async function u(args?: string[]) {
       encoding: 'utf-8',
     })
   }
+}
+
+async function findDependenciesVersion(packageName: string) {
+  let version: MaybeNull<string> = null
+  const pkg = await resolvePkg()
+  const dependenciesKeys = Object.keys(pkg).filter((key: string) => {
+    return /[dD]ependencies/.test(key)
+  })
+
+  for (let i = 0; i <= dependenciesKeys.length - 1; i++) {
+    const dependencies = pkg[dependenciesKeys[i]]
+    if (packageName in dependencies) {
+      version = dependencies[packageName]
+      break
+    }
+  }
+  if (!version)
+    return log('您没有下载此项依赖')
+  version = version.replace(/(\^|~)/, '')
+
+  return version
 }
