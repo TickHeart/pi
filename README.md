@@ -1,11 +1,5 @@
 # pi
 
-A devtool improve your pakage manager use experience
-
-no more care about what package manager is this repo use;
-
-one line, try all.
-
 
 ## Stargazers over time
 
