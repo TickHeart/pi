@@ -34,6 +34,11 @@ pi 0.9.2 以上版本起发生巨大改变
 pi list
 ```
 
+<p algin="center">
+<img width="925" alt="image" src="https://user-images.githubusercontent.com/66043405/190904067-6c9900e7-7270-493a-a215-ca67c3470393.png">
+
+</p>
+
 ## 增加新的命令
 
 如果你想要在 pi 中加上自己喜欢的命令，那么你可以提pr，pi的 pr 非常简单
