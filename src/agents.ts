@@ -33,6 +33,7 @@ export const options = {
   pre: [['pnpm remove {0}', 'yarn remove {0}', 'npm remove {0}'], '删除一个依赖'],
   pc: [['pnpm create {0}', 'yarn create {0}', 'npm create {0}'], '执行 `create` 指令'],
   dd: [['pnpm run dev {0}', 'yarn run dev {0}', 'npm run dev {0}'], '执行 `dev` 指令'],
+  ps: [['pnpm run start {0}', 'yarn run start {0}', 'npm run start {0}'], '执行 `start` 指令'],
   pt: [['pnpm run test {0}', 'yarn run test {0}', 'npm run test {0}'], '执行 `test` 指令'],
   ptu: [['pnpm run test --update', 'yarn run test --update', 'npm run test --update'], '执行 `test` 指令携带 `update` flag'],
   ec: [['pnpm create @tickh/ec', 'yarn create @tickh/ec', 'npm create @tickh/ec'], '执行 create @tickh/ec'],
