@@ -1,5 +1,6 @@
 # pi
 
+便捷使用包管理工具
 
 ## Stargazers over time
 
