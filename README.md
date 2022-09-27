@@ -42,27 +42,27 @@ pi list
 
 ## Add new commands
 
-如果你想要在 pi 中加上自己喜欢的命令，那么你可以提pr，pi的 pr 非常简单
+If you want to add your favorite commands to PI.
 
-你只需要找到 `agents.ts` 文件中的 `options` 对象按照以上的格式添加即可。
-添加完成后只需运行 `pnpm run auto`他会生成配置所需的后续文件，生成完毕后你就可以提pr了。就是如此简单。
+All you need to do is find the `options` object in the `agents.ts` file and add it in the same format as above.
+Once added, simply run  `pnpm run auto` and it will generate the subsequent files needed for the configuration,
 
-一句话来说就是，你只管配置，代码自动生成。
+In short, you just configure it and the code is automatically generated.
 
 ## Specify the package manager at runtime
 
 
-如果你想运行 `npm` , 你只需要在你命令中加入 `-N` 或者 `--npm` 参数即可。
+If you want to run `npm`, you just need to add `-N` or `--npm` arguments to your command.
 <br />
-如果你想运行 `yarn` , 你只需要在你命令中加入 `-Y` 或者 `--yarn` 参数即可。
+If you want to run `yarn`, you just need to add `-Y` or `--yarn` arguments to your command.
 <br />
-如果你想运行 `pnpm` , 你只需要在你命令中加入 `-P` 或者 `--pnpm` 参数即可。
+If you want to run `pnpm`, you just need to add `-P` or `--pnpm` arguments to your command.
 
 ## Intelligent operation
 
-在执行 `pr <alias>` 时，会对 pkg 中的所有指令进行模糊匹配，匹配度高的指令将会被运行。
+In the execution of `pr <alias>`, fuzzy matching will be performed on all instructions in PKG, and the instructions with high matching degree will be run.
 
-执行 `pi sc` 则可以查看 pkg 中配置的所有命令
+Run the `pi sc` command to view all commands configured in the PKG
 
 ## configuration
 
