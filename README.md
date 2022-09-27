@@ -1,19 +1,19 @@
 # pi
 
-便捷使用包管理工具
+Make your package management tools easy
 
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/TickHeart/pi.svg)](https://starchart.cc/TickHeart/pi)
 
 
-## 安装
+## installation
   
 ```bash
 pnpm add @tickh/pi -g
 ```
 
-## 注意
+## warning
 pi 0.9.2 以上版本起发生巨大改变
 1. 放弃了原来的调度系统采用了更智能的脑图
 2. add -> ad
@@ -40,7 +40,7 @@ pi list
 
 </p>
 
-## 增加新的命令
+## Add new commands
 
 如果你想要在 pi 中加上自己喜欢的命令，那么你可以提pr，pi的 pr 非常简单
 
@@ -49,7 +49,7 @@ pi list
 
 一句话来说就是，你只管配置，代码自动生成。
 
-## 运行时指定包管理器
+## Specify the package manager at runtime
 
 
 如果你想运行 `npm` , 你只需要在你命令中加入 `-N` 或者 `--npm` 参数即可。
@@ -58,13 +58,13 @@ pi list
 <br />
 如果你想运行 `pnpm` , 你只需要在你命令中加入 `-P` 或者 `--pnpm` 参数即可。
 
-## 智能运行
+## Intelligent operation
 
 在执行 `pr <alias>` 时，会对 pkg 中的所有指令进行模糊匹配，匹配度高的指令将会被运行。
 
 执行 `pi sc` 则可以查看 pkg 中配置的所有命令
 
-## 配置
+## configuration
 
 mac 用户可以在`~/.pirc`设置全局配置文件。
 
@@ -86,7 +86,7 @@ piBranchPath='' // 这是脑图生成的目录
 
 ```
 
-## 拦截脚本
+## Intercept the script
 
 ```bash
 pi list # 展示pi所有的指令
@@ -96,7 +96,7 @@ pi uv # 自动更新 pi 版本
 pi -v # 显示当前的 pi 版本
 ```
 
-## 指定已经存在的包版本的升降
+## Specifies elevations of existing package versions
 ``` bash
 pi -u vue next # 将vue的版本更新至下一个版本
 pi -u vue n # 上述的简写
@@ -106,12 +106,12 @@ pi -u vue v3.2.3
 pi -u vue V3.2.3
 ```
 
-## 特殊指令
+## Special instructions
 
 + `ec`: https://github.com/TickHeart/ec
 
 + `poo`: https://github.com/TickHeart/oomoo
 
-## 鸣谢
+## thanks
 
 灵感来自于 antfu 大佬的 [ni](https://github.com/antfu/ni)，非常感谢！希望大家给 pi 点 star 前先给 ni 点star
