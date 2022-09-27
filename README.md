@@ -14,18 +14,18 @@ pnpm add @tickh/pi -g
 ```
 
 ## warning
-pi 0.9.2 以上版本起发生巨大改变
-1. 放弃了原来的调度系统采用了更智能的脑图
+Destructive changes have occurred since version 0.9.2 or above
+1. Ditching the original scheduling system for a smarter brain map
 2. add -> ad
 3. addf -> adf
 4. addw -> adw
 5. bb -> pb
 
-脑图功能介绍
-  * 在你第一次进入一个新的项目时，请执行类似于 `pi -Y` 或 `pi -P` 或 `pi -N` 这样的命令为你的当前项目指定一个包管理器，pi就生成脑图，在后续的使用指令时就不需要加入 `-Y` 或 `-P` 或 `-N` 这样的标识符限制使用的包管理器了。
-  * mac 用户不需要再有任何多余配置，但是 win 用户需要在全局配置文件中 加入 `piBranchPath` 配置项，例如`D:/piSetting/.piBranchPath.yaml`，指定 pi 脑图生成的目录，请不要再 c 盘 因为这样 node 没有读写权限，我知道这样真的很麻烦，但是没有别的什么好的办法针对 win 用户，如果您知道有更好的办法，请告诉我。
-  * 当你想要为您的项目切换一个包管理器时，请再次执行 `pi -Y` 或 `pi -P` 或 `pi -N` 这样的命令。
-  * `pi brain` 可以查看脑图
+Brain map function introduction
+  * When you first enter a new project, execute commands like `pi -Y` or `pi -P` or `pi -N` to specify a package manager for your current project，PI generates a brain map.
+  * MAC users do not need to be any redundant configuration, but win in the global configuration file users need to join ` piBranchPath ` configuration items, such as ` D: / piSetting /. PiBranchPath. Yaml `, specifies the directory in which the PI maps generated, I know this is really troublesome, but there is no other good way for WIN users. If you know a better way, please let me know.
+  * When you want to switch a package manager for your project, run the `pi -Y` or `pi -P` or `pi -N` command again.
+  * `pi brain` You can look at the brain map 
 
 
 ## alias
@@ -66,42 +66,42 @@ Run the `pi sc` command to view all commands configured in the PKG
 
 ## configuration
 
-mac 用户可以在`~/.pirc`设置全局配置文件。
+MAC users can set the global configuration file at `~/.pirc`
 
-windows 用户设置全局配置文件需要两个步骤
-  * 执行 `pi --set-config {path}` {path} 则是你的配置文件路径 
-  * 执行 `pi --get-config` 查看是否配置成功
+There are two steps for a Windows user to set up a global profile
+  * Running `pi --set-config {path}` {path} is the path to your configuration file
+  * Run the `pi --get-config` command to check whether the configuration is successful
 
-还可以设置项目的单独配置文件，设置的方就是在在您的项目的根目录下创建一个 `.pirc` 文件。
+You can also set a separate configuration file for your project by creating a `.pirc`file in the root directory of your project.
 
-配置的使用权重是 项目配置文件 > 全局配置文件 > 默认配置文件
+The weight of the configuration is `Object > Global > Default`
   
 ```bash
 # .pirc
 
 # default: false
-skipVersionTesting=true // 这会跳过工具内置的版本检测
+skipVersionTesting=true // This skips the tool is built-in version checking
 
-piBranchPath='' // 这是脑图生成的目录
+piBranchPath='' // This is the catalog of brain map generation
 
 ```
 
 ## Intercept the script
 
 ```bash
-pi list # 展示pi所有的指令
+pi list # Show all the instructions of PI
 
-pi uv # 自动更新 pi 版本
+pi uv # Automatically update the PI version
 
-pi -v # 显示当前的 pi 版本
+pi -v # Displays the current PI version
 ```
 
 ## Specifies elevations of existing package versions
 ``` bash
-pi -u vue next # 将vue的版本更新至下一个版本
-pi -u vue n # 上述的简写
+pi -u vue next # Update the VUE version to the next version
+pi -u vue n # Shorthand for the above
 
-pi -u vue 3.2.3 # 将vue的版本更新至指定版本
+pi -u vue 3.2.3 # Update the VUE version to the specified version
 pi -u vue v3.2.3
 pi -u vue V3.2.3
 ```
