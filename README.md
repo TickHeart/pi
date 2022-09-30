@@ -74,7 +74,7 @@ There are two steps for a Windows user to set up a global profile
 
 You can also set a separate configuration file for your project by creating a `.pirc`file in the root directory of your project.
 
-The weight of the configuration is `Object > Global > Default`
+The weight of the configuration is `Project > Global > Default`
   
 ```bash
 # .pirc
