@@ -88,7 +88,7 @@
     "ini": "^3.0.1",
     "inquirer": "^9.1.1",
     "minimist": "^1.2.6",
-    "pacote": "^13.6.2",
+    "pacote": "^14.0.0",
     "string-similarity": "^4.0.4",
     "yaml": "^2.1.1",
     "ztshared": "^0.0.12"
