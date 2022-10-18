@@ -16,10 +16,13 @@ const log = console.log
 type Parser = (cmd: 'pnpm' | 'yarn' | 'npm', args?: string[]) => string
 
 // parse list command
-const parseLineFlag = async () => {
+const parseLineFlag = async (config: {
+  skipVersionTesting: boolean
+  piBranchPath: string | null
+}) => {
   const args = process.argv.slice(2)
   if (args[0] in piBranch) {
-    await piBranch[args[0] as keyof typeof piBranch](args)
+    await piBranch[args[0] as keyof typeof piBranch](args, config)
     return true
   }
   return false
@@ -28,7 +31,7 @@ const parseLineFlag = async () => {
 export async function run(parser: Parser) {
   const config = await resolveConfig()
   await localDetection(config)
-  if (await parseLineFlag())
+  if (await parseLineFlag(config))
     return
   const piBrain = await brain(config)
   const [_cmd, args] = selectorPackage(process.argv.slice(2))

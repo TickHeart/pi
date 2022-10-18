@@ -1,6 +1,7 @@
 import { log } from 'console'
 import pkg from '../../package.json'
 import { brainView } from '../brain/view'
+import { bn } from './bn'
 import { list } from './list'
 import { sc } from './sc'
 import setConfig, { getConfigFileBody } from './setConfig'
@@ -22,4 +23,5 @@ export const piBranch: Record<string, BranchFn> = {
   'brain': brainView,
   sc,
   '-u': u,
+  'bn': bn,
 }

@@ -1,6 +1,6 @@
 import minimist from 'minimist'
 
-const cmds = {
+export const cmds = {
   yarn: '-Y|--yarn',
   pnpm: '-P|--pnpm',
   npm: '-N|--npm',
@@ -15,7 +15,7 @@ export function selectorPackage(argv: string[]) {
   return [cmd, argv]
 }
 
-function detectionInstruction(argv: string[]) {
+export function detectionInstruction(argv: string[]) {
   const param = getArguments(argv)
   const pnpmAlias = cmds.pnpm.split('|')
   const yarnAlias = cmds.yarn.split('|')
