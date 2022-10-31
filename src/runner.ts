@@ -36,16 +36,16 @@ export async function run(parser: Parser) {
     return
   const piBrain = await brain(config)
   const [_cmd, args] = selectorPackage(process.argv.slice(2))
-  const { open, close } = createIntroAnim(config)
+  const { open: brainOpen, close: brainClose } = createIntroAnim(config, 'pi analyzing brainMap ...')
   try {
-    open()
+    brainOpen()
     let cmd = ''
     if (!_cmd) {
       const anat = await piBrain.useBrain()
       if (anat) { cmd = anat }
 
       else {
-        close()
+        brainClose()
         log('为你的新项目指定一个包管理器吧，执行命令时请携带 -Y 或 -N 或 -P 参数')
         return
       }
@@ -58,7 +58,7 @@ export async function run(parser: Parser) {
     const cmdStr = parser(cmd as any, args as string[])
 
     const prCmdStr = await intelligentInstruction(cmdStr)
-    close()
+    brainClose()
     log(chalk.yellow(`执行 ${prCmdStr || cmdStr}`))
 
     await execaCommand(prCmdStr || cmdStr, {

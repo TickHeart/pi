@@ -28,15 +28,15 @@ function getIntroAnimFrames() {
   }
   return frames
 }
-export function createIntroAnim(config: { loading: boolean }) {
+export function createIntroAnim(config: { loading: boolean }, text: string) {
   let spinner: MaybeNull<Ora> = null
   if (config.loading) {
     spinner = ora({
       spinner: {
-        interval: 60,
+        interval: 30,
         frames: getIntroAnimFrames() as string[],
       },
-      prefixText: chalk.yellow('pi analyzing brainMap ...'),
+      prefixText: chalk.yellow(text),
     })
   }
   return {
