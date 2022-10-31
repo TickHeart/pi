@@ -1,5 +1,7 @@
 import chalk from 'chalk'
+import type { Ora } from 'ora'
 import ora from 'ora'
+import type { MaybeNull } from 'ztshared/index'
 
 const gradientColors = [
   '#ff5e00',
@@ -26,14 +28,25 @@ function getIntroAnimFrames() {
   }
   return frames
 }
-export function createIntroAnim() {
-  const spinner = ora({
-    spinner: {
-      interval: 200,
-      frames: getIntroAnimFrames() as string[],
+export function createIntroAnim(config: { loading: boolean }) {
+  let spinner: MaybeNull<Ora> = null
+  if (config.loading) {
+    spinner = ora({
+      spinner: {
+        interval: 60,
+        frames: getIntroAnimFrames() as string[],
+      },
+      prefixText: chalk.yellow('pi analyzing brainMap ...'),
+    })
+  }
+  return {
+    spinner,
+    open() {
+      spinner?.start()
     },
-    prefixText: chalk.yellow('pi running ■■▶'),
-  })
-  return spinner
+    close() {
+      spinner?.stop()
+    },
+  }
 }
 

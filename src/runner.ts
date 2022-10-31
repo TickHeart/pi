@@ -9,6 +9,7 @@ import { piBranch } from './branch/branch'
 import { localDetection } from './version'
 import { brain } from './brain'
 import { intelligentInstruction } from './intelligentInstruction'
+import { createIntroAnim } from './loading'
 
 // eslint-disable-next-line no-console
 const log = console.log
@@ -35,14 +36,16 @@ export async function run(parser: Parser) {
     return
   const piBrain = await brain(config)
   const [_cmd, args] = selectorPackage(process.argv.slice(2))
-
+  const { open, close } = createIntroAnim(config)
   try {
+    open()
     let cmd = ''
     if (!_cmd) {
       const anat = await piBrain.useBrain()
       if (anat) { cmd = anat }
 
       else {
+        close()
         log('为你的新项目指定一个包管理器吧，执行命令时请携带 -Y 或 -N 或 -P 参数')
         return
       }
@@ -55,6 +58,7 @@ export async function run(parser: Parser) {
     const cmdStr = parser(cmd as any, args as string[])
 
     const prCmdStr = await intelligentInstruction(cmdStr)
+    close()
     log(chalk.yellow(`执行 ${prCmdStr || cmdStr}`))
 
     await execaCommand(prCmdStr || cmdStr, {

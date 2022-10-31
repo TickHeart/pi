@@ -7,6 +7,7 @@ import fse from 'fs-extra'
 export const DEFAULT_OPTIONS = {
   skipVersionTesting: false,
   piBranchPath: process.platform === 'win32' ? null : path.resolve(`${process.env.HOME}/.pi_brain.yaml`),
+  loading: false,
 }
 export type Options = typeof DEFAULT_OPTIONS
 
