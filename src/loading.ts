@@ -34,7 +34,7 @@ export function createIntroAnim(config: { loading: boolean }, text: string) {
     spinner = ora({
       spinner: {
         interval: 30,
-        frames: getIntroAnimFrames() as string[],
+        frames: [...getIntroAnimFrames(), '\n'],
       },
       prefixText: chalk.yellow(text),
     })
