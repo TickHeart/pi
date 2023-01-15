@@ -42,6 +42,7 @@ export const options = {
   pb: [['pnpm run build {0}', 'yarn run build {0}', 'npm run build {0}'], '执行 `build` 指令'],
   px: [['pnpx {0}', 'npx {0}', 'npx {0}'], '执行 npx'],
   psf: [['pnpm start --filter {0}'], '执行 monorepo子项目'],
+  pit: [['pnpm install --registry=http://registry.npmmirror.com {0}', 'yarn install --registry=http://registry.npmmirror.com {0}', 'npm install --registry=http://registry.npmmirror.com {0}'], '执行 `install` 指令携带单次镜像源 flag'],
 } as Record<string, [string[], string]>
 
 type ValueType = Record<keyof typeof options, string>
