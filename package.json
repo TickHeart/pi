@@ -1,7 +1,7 @@
 {
   "name": "@tickh/pi",
   "type": "module",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "private": false,
   "packageManager": "pnpm@7.5.2",
   "description": "",
@@ -58,7 +58,8 @@
     "pvite": "./bin/pvite.mjs",
     "pb": "./bin/pb.mjs",
     "px": "./bin/px.mjs",
-    "psf": "./bin/psf.mjs"
+    "psf": "./bin/psf.mjs",
+    "pit": "./bin/pit.mjs"
   },
   "files": [
     "dist",
