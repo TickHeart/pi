@@ -90,7 +90,7 @@
     "inquirer": "^9.2.7",
     "minimist": "^1.2.8",
     "ora": "^6.3.1",
-    "pacote": "^13.6.2",
+    "pacote": "^15.0.0",
     "string-similarity": "^4.0.4",
     "yaml": "^2.3.1",
     "ztshared": "^0.0.12"
