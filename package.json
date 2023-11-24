@@ -119,7 +119,7 @@
     "pnpm": "7.10.0-0",
     "typescript": "^4.9.5",
     "unbuild": "^0.7.6",
-    "unplugin-auto-import": "^0.7.2",
+    "unplugin-auto-import": "^0.17.0",
     "vitest": "0.18.1"
   },
   "lint-staged": {
