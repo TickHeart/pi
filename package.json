@@ -96,7 +96,7 @@
     "ztshared": "^0.0.12"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "0.26.0",
+    "@antfu/eslint-config": "0.43.1",
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
     "@types/app-root-path": "^1.2.8",
