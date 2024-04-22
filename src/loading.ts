@@ -29,6 +29,8 @@ function getIntroAnimFrames() {
   return frames
 }
 export function createIntroAnim(config: { loading: boolean }, text: string) {
+  text += '\n'
+  
   let spinner: MaybeNull<Ora> = null
   if (config.loading) {
     spinner = ora({
