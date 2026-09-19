@@ -97,8 +97,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "0.26.0",
-    "@commitlint/cli": "^17.8.1",
-    "@commitlint/config-conventional": "^17.8.1",
+    "@commitlint/cli": "^21.0.0",
+    "@commitlint/config-conventional": "^21.0.0",
     "@types/app-root-path": "^1.2.8",
     "@types/columnify": "^1.5.4",
     "@types/fs-extra": "^9.0.13",
